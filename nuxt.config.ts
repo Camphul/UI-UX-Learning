@@ -1,5 +1,6 @@
+import NuxtConfiguration from '@nuxt/config'
 
-export default {
+const config: NuxtConfiguration = {
   mode: 'universal',
   /*
   ** Headers of the page
@@ -50,3 +51,5 @@ export default {
     }
   }
 }
+
+export default config
