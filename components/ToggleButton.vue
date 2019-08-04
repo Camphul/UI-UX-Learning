@@ -1,7 +1,7 @@
 <template>
-  <button @click="toggle">
+  <v-btn color="primary" @click="toggle">
     {{ text }}
-  </button>
+  </v-btn>
 </template>
 <script lang="ts">
 import { Component, Emit, Prop, Vue, Watch } from 'nuxt-property-decorator'

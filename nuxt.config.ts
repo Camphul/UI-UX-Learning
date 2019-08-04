@@ -34,6 +34,7 @@ const config: NuxtConfiguration = {
   ** Nuxt.js dev-modules
   */
   devModules: [
+    '@nuxtjs/vuetify'
   ],
   /*
   ** Nuxt.js modules
