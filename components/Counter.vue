@@ -1,6 +1,6 @@
 <template>
   <div>
-    Start index: {{value}}<br>
+    Start index: {{ value }}<br>
     <toggle-button @onEnabled="startCounter" @onDisabled="stopCounter"/>
   </div>
 </template>

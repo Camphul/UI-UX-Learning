@@ -8,7 +8,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "nuxt": "^2.0.0",
@@ -17,7 +18,11 @@
   },
   "devDependencies": {
     "@nuxt/typescript": "^2.8.1",
+    "@nuxtjs/eslint-config": "^1.0.1",
     "@types/node": "^12.6.9",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.1.0",
     "nodemon": "^1.18.9"
   }
 }
