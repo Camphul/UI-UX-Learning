@@ -1,6 +1,18 @@
-# dumb-learner
+# UI-UX Learning
 
-> Learning nuxtjs with typescript and vuetify
+Personal project to improve my frontend skills.
+The goal is to create a webapp which strictly follows material design guidelines.
+
+Old versions will be stored in other branches so I can keep track of templates/progress.
+
+## Technologies
+
+- Nuxt js
+- Typescript
+- Vuetify(not yet)
+- Vuelidate(not yet)
+- Nuxt Axios(not yet)
+- Nuxt Auth Module(not yet)
 
 ## Build Setup
 
