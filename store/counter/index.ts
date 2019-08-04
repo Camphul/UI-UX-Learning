@@ -1,13 +1,13 @@
-import { Module } from 'vuex';
-import getters from './getters';
-import state from './state';
-import actions from "./actions";
-import mutations from "./mutations";
-import {CounterState} from "./types";
-import {RootState} from "../types";
-import { namespace } from  'nuxt-property-decorator';
+import { Module } from 'vuex'
+import { namespace } from 'nuxt-property-decorator'
+import { RootState } from '../types'
+import getters from './getters'
+import state from './state'
+import actions from './actions'
+import mutations from './mutations'
+import { CounterState } from './types'
 
-const namespaced: boolean = true;
+const namespaced: boolean = true
 
 export const counter: Module<CounterState, RootState> = {
   namespaced,
@@ -17,4 +17,4 @@ export const counter: Module<CounterState, RootState> = {
   mutations
 }
 
-export const CounterStore = namespace('counter/');
+export const CounterStore = namespace('counter/')
