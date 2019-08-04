@@ -6,10 +6,10 @@ import { RootState } from '../types';
  * Counter actions
  */
 export const actions: ActionTree<CounterState, RootState> = {
-  setValue({commit}, amount: number=0): void {
+  setValue({commit}, amount: number=0) {
     commit('setValue', amount)
   },
-  increment({ commit }): void {
+  increment({ commit }) {
     commit('increment');
   }
 };
