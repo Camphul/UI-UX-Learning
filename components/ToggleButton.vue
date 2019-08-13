@@ -1,6 +1,9 @@
 <template>
   <v-btn color="primary" @click="toggle">
-    <v-icon left>mdi-alarm</v-icon> {{ text }}
+    <v-icon left>
+      mdi-alarm
+    </v-icon>
+    {{ text }}
   </v-btn>
 </template>
 <script lang="ts">
