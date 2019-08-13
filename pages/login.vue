@@ -1,25 +1,62 @@
 <template>
-  <card-form id="login-form" title="Welcome Back" submit-button-text="Login" @submit="doLogin">
+  <t-card-form
+    id="login-form"
+    title="Welcome Back"
+    submit-button-text="Login"
+    :schema="loginSchema"
+    :values="loginValues"
+    @submit="doLogin"
+  >
     <template #actionButtons>
       <v-spacer />
-      <v-button text>
+      <v-btn text>
         Forgot Password
-      </v-button>
+      </v-btn>
     </template>
-  </card-form>
+  </t-card-form>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import CardForm from '~/components/form/CardForm.vue'
+import TCardForm from '~/components/form/TCardForm.vue'
+import { IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/form/rules'
 @Component({
   layout: 'auth',
   components: {
-    CardForm
+    TCardForm
   }
 })
 export default class LoginPage extends Vue {
+  loginValues = {
+    identifier: '',
+    password: ''
+  }
+
+  loginSchema: object = [
+    {
+      name: 'identifier',
+      label: 'Username',
+      rules: [
+        IsRequired(),
+        MinLength(2),
+        MaxLength(16),
+        NotBlank()
+      ],
+      icon: 'mdi-account'
+    },
+    {
+      type: 'password',
+      name: 'password',
+      icon: 'mdi-lock',
+      rules: [
+        IsRequired(),
+        MinLength(2),
+        MaxLength(16),
+        NotBlank()
+      ]
+    }
+  ]
   doLogin () {
-    alert('Submitting form')
+    alert('Submitting form: ' + JSON.stringify(this.loginValues))
   }
 }
 </script>

@@ -4,8 +4,12 @@
       {{ title }}
     </v-card-title>
     <v-card-text>
-      <v-form :id="id" @submit.prevent="onSubmit(formValue)">
-      </v-form>
+      <t-form-factory
+        :id="id"
+        :schema="schema"
+        :values="values"
+        v-on="$listeners"
+      />
     </v-card-text>
     <v-card-actions>
       <slot name="submitButton">
@@ -19,7 +23,11 @@
 </template>
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'nuxt-property-decorator'
+import TFormFactory from './factory/TFormFactory.vue'
 @Component({
+  components: {
+    TFormFactory
+  }
 })
 export default class CardForm extends Vue {
   @Prop({ required: false, default: 'Form' })
@@ -28,6 +36,10 @@ export default class CardForm extends Vue {
   readonly submitButtonText!: string;
   @Prop({ required: true, default: 'card-form' })
   readonly id!: string;
+  @Prop({ required: true })
+  readonly schema!: object[];
+  @Prop({ required: true })
+  readonly values!: object;
 
   @Emit('submit')
   onSubmit () {
