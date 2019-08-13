@@ -11,25 +11,22 @@
 </template>
 
 <script lang="ts">
-import { Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import Counter from '@/components/Counter.vue'
 //  import Counter from '@/components/'
-const IndexPage = Vue.extend({
+@Component({
   components: {
     Counter
-  },
-  data: () => {
-    return {
-      blogs: {}
-    }
-  },
+  }
+})
+export default class IndexPage extends Vue {
+  blogs: any = {}
   async asyncData ({ $axios }) {
-    let { data } = await $axios.get(`/blogs`)
+    console.log($axios)
+    const {data} = await $axios.get('/blogs')
     return {
       blogs: data
     }
   }
-})
-export default IndexPage
-
+}
 </script>
