@@ -39,7 +39,23 @@ const config: NuxtConfiguration = {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios'
   ],
+
+  axios: {
+    prefix: '/api/',
+    retry: { retries: 3 },
+    proxy: true,
+    debug: true
+  },
+
+  proxy: {
+    '/api/': {
+      target: 'http://localhost:8080',
+      pathRewrite: { '^/api/': '' }
+    }
+  },
+
   /*
   ** Build configuration
   */
