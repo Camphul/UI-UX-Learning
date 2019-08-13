@@ -3,8 +3,8 @@
     id="login-form"
     title="Welcome Back"
     submit-button-text="Login"
-    :schema="loginSchema"
-    :values="loginValues"
+    :schema="schema"
+    :model="formData"
     @submit="doLogin"
   >
     <template #actionButtons>
@@ -18,7 +18,12 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import TCardForm from '~/components/form/TCardForm.vue'
-import { IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/form/rules'
+import { LoginModel, buildSchema } from '~/lib/form/auth/login'
+import FormInputSchema from '~/lib/form/factory/FormInputSchema'
+
+// If we should use a username or email input field
+const USE_EMAIL_IDENTIFIER = true
+
 @Component({
   layout: 'auth',
   components: {
@@ -26,37 +31,15 @@ import { IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/form/rules'
   }
 })
 export default class LoginPage extends Vue {
-  loginValues = {
+  // Configure to use username or email in here
+  private schema: FormInputSchema[] = buildSchema(USE_EMAIL_IDENTIFIER)
+  private formData: LoginModel = {
     identifier: '',
     password: ''
   }
 
-  loginSchema: object = [
-    {
-      name: 'identifier',
-      label: 'Username',
-      rules: [
-        IsRequired(),
-        MinLength(2),
-        MaxLength(16),
-        NotBlank()
-      ],
-      icon: 'mdi-account'
-    },
-    {
-      type: 'password',
-      name: 'password',
-      icon: 'mdi-lock',
-      rules: [
-        IsRequired(),
-        MinLength(2),
-        MaxLength(16),
-        NotBlank()
-      ]
-    }
-  ]
   doLogin () {
-    alert('Submitting form: ' + JSON.stringify(this.loginValues))
+    alert('Submitting form: ' + JSON.stringify(this.formData))
   }
 }
 </script>

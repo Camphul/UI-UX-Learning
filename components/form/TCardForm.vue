@@ -7,7 +7,7 @@
       <t-form-factory
         :id="id"
         :schema="schema"
-        :values="values"
+        :values="model"
         v-on="$listeners"
       />
     </v-card-text>
@@ -24,6 +24,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'nuxt-property-decorator'
 import TFormFactory from './factory/TFormFactory.vue'
+import FormInputSchema from '~/lib/form/factory/FormInputSchema'
 @Component({
   components: {
     TFormFactory
@@ -37,9 +38,9 @@ export default class CardForm extends Vue {
   @Prop({ required: true, default: 'card-form' })
   readonly id!: string;
   @Prop({ required: true })
-  readonly schema!: object[];
+  readonly schema!: FormInputSchema[];
   @Prop({ required: true })
-  readonly values!: object;
+  readonly model!: object;
 
   @Emit('submit')
   onSubmit () {
