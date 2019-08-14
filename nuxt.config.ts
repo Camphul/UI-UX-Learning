@@ -37,6 +37,16 @@ const config: NuxtConfiguration = {
     '@nuxtjs/vuetify',
     ['vue-wait/nuxt', { useVuex: true }]
   ],
+
+  vuetify: {
+    theme: {
+      themes: {
+        light: {
+          primary: '#42a5f5'
+        }
+      }
+    }
+  },
   /*
   ** Nuxt.js modules
   */

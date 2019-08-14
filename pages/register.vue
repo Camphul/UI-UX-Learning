@@ -49,6 +49,14 @@ export default class RegisterPage extends Vue {
     passwordConfirm: ''
   }
 
+  doRegister () {
+    this.$wait.start('register-form-wait')
+    alert('Not implemented!')
+    setTimeout(() => {
+      this.$wait.end('register-form-wait')
+    }, 3000)
+  }
+
   get registerSchema () {
     return [
       {
@@ -109,14 +117,6 @@ export default class RegisterPage extends Vue {
         ]
       }
     ]
-  }
-
-  doRegister () {
-    this.$wait.start('register-form-wait')
-    alert('Not implemented!')
-    setTimeout(() => {
-      this.$wait.end('register-form-wait')
-    }, 3000)
   }
 }
 </script>
