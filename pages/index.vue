@@ -4,7 +4,12 @@
       UX/UI learning
     </h1>
     <p>{{ user }}</p>
-    <v-btn @click="doLogout" color="primary">Logout</v-btn>
+    <v-btn
+      color="primary"
+      @click="doLogout"
+    >
+      Logout
+    </v-btn>
   </div>
 </template>
 
