@@ -7,7 +7,14 @@
       :schema="schema"
       :model="formData"
       @submit="doLogin"
-    />
+    >
+      <template #actionButtons>
+        <v-spacer />
+        <v-btn text to="/register">
+          Register
+        </v-btn>
+      </template>
+    </t-card-form>
     <v-snackbar
       v-model="showError"
       color="error"
@@ -27,6 +34,7 @@ const USE_EMAIL_IDENTIFIER = true
 
 @Component({
   layout: 'auth',
+  transition: 'scroll-y-transition',
   components: {
     TCardForm
   }
