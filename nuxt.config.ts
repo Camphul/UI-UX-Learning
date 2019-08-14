@@ -23,6 +23,7 @@ const config: NuxtConfiguration = {
   ** Global CSS
   */
   css: [
+    '~/assets/utils.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -55,7 +56,7 @@ const config: NuxtConfiguration = {
 
   proxy: {
     '/api/': {
-      target: 'http://localhost:8080',
+      target: 'http://192.168.0.4:8080',
       pathRewrite: { '^/api/': '' }
     }
   },

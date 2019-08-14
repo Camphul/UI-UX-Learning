@@ -9,7 +9,6 @@ const EmailFieldSchema: FormInputSchema = {
   type: 'email',
   label: 'Email',
   rules: [
-    MaxLength(256),
     IsEmail()
   ],
   icon: 'mdi-account',

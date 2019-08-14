@@ -3,7 +3,7 @@
     <v-content app>
       <v-container
         fluid
-        fill-height
+        class="height-margin-md"
       >
         <v-layout
           align-center

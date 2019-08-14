@@ -8,15 +8,12 @@ const ComponentType = {
   /**
    * Find the component type required.
    * @param value type name.
-   * @param error if we should throw an error if not resolvable.
    */
-  of: (value: string, error: boolean = true): string => {
+  of: (value: string): string => {
     if (ComponentType[value]) {
       return ComponentType[value]
-    } else if (error) {
-      throw new Error('Could not resolve type ' + value + ' to a valid component.')
     } else {
-      return 'div'
+      return value
     }
   }
 }
