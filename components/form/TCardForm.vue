@@ -7,7 +7,7 @@
       <t-form-factory
         :id="id"
         :schema="schema"
-        :values="model"
+        :model="model"
         v-on="$listeners"
       />
     </v-card-text>

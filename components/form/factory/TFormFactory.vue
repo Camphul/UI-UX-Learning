@@ -7,7 +7,7 @@
     <t-form-factory-input
       v-for="field in schema"
       :key="field.name"
-      v-model="values[field.name]"
+      v-model="model[field.name]"
       v-bind="field"
     />
   </v-form>
@@ -44,7 +44,7 @@ export default class TFormFactory extends Vue {
    * Form values
    */
   @Prop({ required: true })
-  values!: any;
+  model!: any;
 
   /**
    * Event which gets called on submit when the form is valid.
