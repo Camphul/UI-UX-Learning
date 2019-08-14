@@ -1,5 +1,5 @@
-import { IsEmail } from '~/lib/form/rules'
-import FormInputSchema from '~/lib/form/factory/FormInputSchema'
+import { IsEmail } from '~/lib/forms/rules'
+import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
 
 /**
  * Username or email identification schema.

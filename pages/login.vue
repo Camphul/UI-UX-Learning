@@ -26,8 +26,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import TCardForm from '~/components/form/TCardForm.vue'
-import { LoginModel, buildSchema } from '~/lib/form/auth/login'
-import FormInputSchema from '~/lib/form/factory/FormInputSchema'
+import { LoginModel, buildSchema } from '~/lib/forms/auth/login'
+import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
 
 // If we should use a username or email input field
 const USE_EMAIL_IDENTIFIER = true

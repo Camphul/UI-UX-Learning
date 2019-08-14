@@ -25,9 +25,9 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import RegisterModel from '~/lib/form/auth/register/RegisterModel'
+import RegisterModel from '~/lib/forms/auth/register/RegisterModel'
 import TCardForm from '~/components/form/TCardForm.vue'
-import { IsEmail, IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/form/rules'
+import { IsEmail, IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/forms/rules'
 
 @Component({
   layout: 'auth',

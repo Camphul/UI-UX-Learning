@@ -29,7 +29,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'nuxt-property-decorator'
 import TFormFactory from './factory/TFormFactory.vue'
-import FormInputSchema from '~/lib/form/factory/FormInputSchema'
+import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
 @Component({
   components: {
     TFormFactory

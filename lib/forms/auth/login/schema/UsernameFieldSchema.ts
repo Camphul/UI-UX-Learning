@@ -1,5 +1,5 @@
-import { IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/form/rules'
-import FormInputSchema from '~/lib/form/factory/FormInputSchema'
+import { IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/forms/rules'
+import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
 
 /**
  * Username or email identification schema.

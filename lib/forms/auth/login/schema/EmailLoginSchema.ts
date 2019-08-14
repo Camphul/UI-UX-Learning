@@ -1,6 +1,6 @@
 import EmailFieldSchema from './EmailFieldSchema'
 import PasswordFieldSchema from './PasswordFieldSchema'
-import FormInputSchema from '~/lib/form/factory/FormInputSchema'
+import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
 
 const EmailLoginSchema: FormInputSchema[] = [
   EmailFieldSchema,

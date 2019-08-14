@@ -16,7 +16,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from 'nuxt-property-decorator'
 import TFormFactoryInput from './TFormFactoryInput.vue'
-import FormInputSchema from '~/lib/form/factory/FormInputSchema'
+import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
 
 /**
  * A vuetify form factory component to generate forms.

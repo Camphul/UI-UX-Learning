@@ -1,7 +1,7 @@
 import UsernameLoginSchema from './schema/UsernameLoginSchema'
 import EmailLoginSchema from './schema/EmailLoginSchema'
 import LoginModel from './LoginModel'
-import FormInputSchema from '~/lib/form/factory/FormInputSchema'
+import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
 /**
  * Returns correct form schema.
  * @param email if we should use the email schema for login.

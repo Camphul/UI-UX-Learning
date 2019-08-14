@@ -9,7 +9,7 @@
 <script lang="ts">
 import { Prop, Vue, Component } from 'nuxt-property-decorator'
 import StringUtil from '~/lib/StringUtil'
-import { TextInputType, ComponentType } from '~/lib/form/factory'
+import { TextInputType, ComponentType } from '~/lib/forms/factory'
 
 /**
  * A single input component for a vuetify form.

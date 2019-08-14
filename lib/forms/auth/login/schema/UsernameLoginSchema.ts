@@ -1,6 +1,6 @@
 import UsernameFieldSchema from './UsernameFieldSchema'
 import PasswordFieldSchema from './PasswordFieldSchema'
-import FormInputSchema from '~/lib/form/factory/FormInputSchema'
+import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
 
 const UsernameLoginSchema: FormInputSchema[] = [
   UsernameFieldSchema,
