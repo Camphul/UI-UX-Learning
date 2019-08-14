@@ -1,5 +1,6 @@
 import Vue, { ComponentOptions } from 'vue'
 import { CookieAttributes } from 'js-cookie'
+import { VueWaitInstance } from 'vue-wait'
 import User from '~/lib/types/auth/CurrentUser'
 
 interface StorageCookieOptions extends CookieAttributes {
@@ -51,7 +52,9 @@ declare module 'vue/types/options' {
 }
 
 declare module 'vue/types/vue' {
+
   interface Vue {
     $auth: Auth<User>;
+    $wait: VueWaitInstance
   }
 }

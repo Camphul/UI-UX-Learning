@@ -9,6 +9,7 @@
       :key="field.name"
       v-model="model[field.name]"
       v-bind="field"
+      :readonly="isLoading"
     />
   </v-form>
 </template>
@@ -45,6 +46,10 @@ export default class TFormFactory extends Vue {
    */
   @Prop({ required: true })
   model!: any;
+
+  get isLoading () {
+    return this.$wait.is(this.id + '-wait')
+  }
 
   /**
    * Event which gets called on submit when the form is valid.

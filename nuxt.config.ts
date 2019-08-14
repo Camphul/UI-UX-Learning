@@ -33,7 +33,8 @@ const config: NuxtConfiguration = {
   ** Nuxt.js dev-modules
   */
   devModules: [
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    ['vue-wait/nuxt', { useVuex: true }]
   ],
   /*
   ** Nuxt.js modules
@@ -42,6 +43,8 @@ const config: NuxtConfiguration = {
     '@nuxtjs/axios',
     '@nuxtjs/auth'
   ],
+
+  wait: { useVuex: true },
 
   axios: {
     prefix: '/api/',

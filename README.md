@@ -9,10 +9,10 @@ Old versions will be stored in other branches so I can keep track of templates/p
 
 - Nuxt js
 - Typescript
-- Vuetify(not yet)
-- Vuelidate(not yet)
-- Nuxt Axios(not yet)
-- Nuxt Auth Module(not yet)
+- Vuetify
+- Nuxt Axios
+- Nuxt Auth Module
+- Vue Wait
 
 ## Build Setup
 

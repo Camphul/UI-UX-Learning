@@ -13,7 +13,12 @@
     </v-card-text>
     <v-card-actions>
       <slot name="submitButton">
-        <v-btn color="primary" type="submit" :form="id">
+        <v-btn
+          color="primary"
+          type="submit"
+          :form="id"
+          :loading="isLoading"
+        >
           {{ submitButtonText }}
         </v-btn>
       </slot>
@@ -41,6 +46,10 @@ export default class CardForm extends Vue {
   readonly schema!: FormInputSchema[];
   @Prop({ required: true })
   readonly model!: object;
+
+  get isLoading () {
+    return this.$wait.is(this.id + '-wait')
+  }
 
   @Emit('submit')
   onSubmit () {
