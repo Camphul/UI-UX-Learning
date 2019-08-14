@@ -10,6 +10,7 @@
 import { Prop, Vue, Component } from 'nuxt-property-decorator'
 import StringUtil from '~/lib/StringUtil'
 import { TextInputType, ComponentType } from '~/lib/forms/factory'
+import Rule from '~/lib/forms/rules/Rule'
 
 /**
  * A single input component for a vuetify form.
@@ -44,7 +45,7 @@ export default class TFormFactoryInput extends Vue {
     required: false,
     default: () => []
   })
-  readonly rules!: Function[];
+  readonly rules!: Rule<any>[];
 
   /**
    * Parsed component attributes

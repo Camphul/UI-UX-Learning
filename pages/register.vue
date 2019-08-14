@@ -25,6 +25,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import StringRule from '~/lib/forms/rules/StringRule'
 import { IsEmail, IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/forms/rules'
 import FormSchema from '~/lib/forms/factory/schema/FormSchema'
 import RegisterFormModel from '~/lib/forms/auth/register/RegisterFormModel'
@@ -91,9 +92,9 @@ export default class RegisterPage extends Vue {
         icon: 'mdi-email',
         rules: [
           IsEmail(),
-          (value) => {
+          ((value) => {
             return value === this.formData.email || 'Does not match email.'
-          }
+          }) as StringRule
         ]
       } as FormInputSchema,
       {
@@ -113,9 +114,9 @@ export default class RegisterPage extends Vue {
         icon: 'mdi-lock',
         rules: [
           IsRequired(),
-          (value) => {
+          ((value: string) => {
             return value === this.formData.password || 'Does not match other password'
-          }
+          }) as StringRule
         ]
       } as FormInputSchema
     ]

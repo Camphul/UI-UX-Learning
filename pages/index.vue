@@ -22,7 +22,7 @@ export default class IndexPage extends Vue {
   private blogPage: Page<BlogPostSummary>;
 
   async asyncData ({ app }) {
-    const blogPage = await app.$restRepo('blogs').index()
+    const blogPage = await app.$restRepo('blogs').index<Page<BlogPostSummary>>()
     return {
       blogPage
     }

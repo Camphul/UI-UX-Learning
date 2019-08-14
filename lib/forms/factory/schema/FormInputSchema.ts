@@ -1,4 +1,5 @@
-import { StringAnyMap } from '../../../types/Maps'
+import { StringAnyMap } from '~/lib/types/Maps'
+import Rule from '~/lib/forms/rules/Rule'
 
 /**
  * Schema for a single form input.
@@ -8,6 +9,6 @@ export default interface FormInputSchema {
   name: string,
   label?: string,
   attributes?: StringAnyMap,
-  rules?: Function[],
+  rules?: Rule<any>[],
   icon?: string
 }
