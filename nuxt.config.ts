@@ -39,12 +39,13 @@ const config: NuxtConfiguration = {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
 
   axios: {
     prefix: '/api/',
-    retry: { retries: 3 },
+    retry: { retries: 1 },
     proxy: true,
     debug: true
   },
@@ -54,6 +55,34 @@ const config: NuxtConfiguration = {
       target: 'http://localhost:8080',
       pathRewrite: { '^/api/': '' }
     }
+  },
+
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: '/'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/authorize',
+            method: 'post',
+            propertyName: 'token'
+          },
+          user: {
+            url: '/auth/user',
+            method: 'GET',
+            propertyName: false
+          }
+        }
+      }
+    }
+  },
+
+  router: {
+    middleware: ['auth']
   },
 
   /*

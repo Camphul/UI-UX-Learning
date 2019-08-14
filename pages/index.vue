@@ -1,32 +1,22 @@
 <template>
   <div>
     <h1>
-      Counter App
+      UX/UI learning
     </h1>
-    <p>{{ blogs }}</p>
-    <h2>
-      <Counter />
-    </h2>
+    <p>{{ user }}</p>
+    <v-btn @click="doLogout" color="primary">Logout</v-btn>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import Counter from '@/components/Counter.vue'
-//  import Counter from '@/components/'
-@Component({
-  components: {
-    Counter
-  }
-})
+@Component
 export default class IndexPage extends Vue {
-  blogs: any = {}
-  async asyncData ({ $axios }) {
-    console.log($axios)
-    const {data} = await $axios.get('/blogs')
-    return {
-      blogs: data
-    }
+  get user () {
+    return this.$auth.user
+  }
+  doLogout () {
+    this.$auth.logout()
   }
 }
 </script>

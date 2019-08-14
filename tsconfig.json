@@ -28,7 +28,11 @@
       "@types/node",
       "@nuxt/vue-app",
       "@nuxtjs/vuetify",
-      "@nuxtjs/axios"
+      "@nuxtjs/axios",
+      "@nuxtjs/auth"
     ]
-  }
+  },
+  "files": [
+    "index.d.ts"
+  ]
 }

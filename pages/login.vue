@@ -34,12 +34,19 @@ export default class LoginPage extends Vue {
   // Configure to use username or email in here
   private schema: FormInputSchema[] = buildSchema(USE_EMAIL_IDENTIFIER)
   private formData: LoginModel = {
-    identifier: '',
-    password: ''
+    identifier: 'admin@example.com',
+    password: 'test'
   }
 
-  doLogin () {
-    alert('Submitting form: ' + JSON.stringify(this.formData))
+  async doLogin () {
+    try {
+      await this.$auth.loginWith('local', {
+        data: this.formData
+      })
+      this.$router.push('/')
+    } catch (e) {
+      alert('error: ' + JSON.stringify(e))
+    }
   }
 }
 </script>
