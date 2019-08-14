@@ -1,3 +1,5 @@
+import { SuccessError } from '~/lib/types'
+
 const EMPTY_STRING = ''
 
 /**
@@ -5,7 +7,7 @@ const EMPTY_STRING = ''
  * @param message error message.
  */
 export default function build (message: string = 'Input cannot be blank.'): Function {
-  return (value: string): boolean | string => {
+  return (value: string): SuccessError => {
     return value.trim() !== EMPTY_STRING || message
   }
 }

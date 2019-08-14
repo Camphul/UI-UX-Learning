@@ -44,7 +44,7 @@ export default class TFormFactoryInput extends Vue {
     required: false,
     default: () => []
   })
-  readonly rules!: [];
+  readonly rules!: Function[];
 
   /**
    * Parsed component attributes

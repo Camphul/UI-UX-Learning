@@ -1,10 +1,10 @@
-import UsernameFieldSchema from './UsernameFieldSchema'
-import PasswordFieldSchema from './PasswordFieldSchema'
-import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
+import UsernameFieldSchema from './fields/UsernameFieldSchema'
+import PasswordFieldSchema from './fields/PasswordFieldSchema'
+import FormSchema from '~/lib/forms/factory/schema/FormSchema'
 
-const UsernameLoginSchema: FormInputSchema[] = [
+const usernameLoginSchema: FormSchema = [
   UsernameFieldSchema,
   PasswordFieldSchema
 ]
 
-export default UsernameLoginSchema
+export default usernameLoginSchema

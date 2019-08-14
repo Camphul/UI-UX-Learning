@@ -16,7 +16,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from 'nuxt-property-decorator'
 import TFormFactoryInput from './TFormFactoryInput.vue'
-import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
+import FormSchema from '~/lib/forms/factory/schema/FormInputSchema'
 
 /**
  * A vuetify form factory component to generate forms.
@@ -40,7 +40,7 @@ export default class TFormFactory extends Vue {
    * Form schema
    */
   @Prop({ required: true })
-  readonly schema!: FormInputSchema[];
+  readonly schema!: FormSchema;
   /**
    * Form values
    */

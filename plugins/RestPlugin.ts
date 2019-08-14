@@ -1,4 +1,4 @@
-import RestClient from '../lib/api/RestClient'
+import RestClient from '~/lib/api/RestClient'
 
 export default ({ app }, inject) => {
   // Set the function directly on the context.app object

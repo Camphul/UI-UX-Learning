@@ -25,9 +25,11 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import RegisterModel from '~/lib/forms/auth/register/RegisterModel'
-import TCardForm from '~/components/form/TCardForm.vue'
 import { IsEmail, IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/forms/rules'
+import FormSchema from '~/lib/forms/factory/schema/FormSchema'
+import RegisterFormModel from '~/lib/forms/auth/register/RegisterFormModel'
+import FormInputSchema from '~/lib/forms/factory/schema/FormInputSchema'
+import TCardForm from '~/components/form/TCardForm.vue'
 
 @Component({
   layout: 'auth',
@@ -41,7 +43,7 @@ export default class RegisterPage extends Vue {
   private showError: boolean = false
   private errorMessage: string = 'Unknown error'
 
-  private formData: RegisterModel = {
+  private formData: RegisterFormModel = {
     username: '',
     email: '',
     emailConfirm: '',
@@ -57,7 +59,7 @@ export default class RegisterPage extends Vue {
     }, 3000)
   }
 
-  get registerSchema () {
+  get registerSchema (): FormSchema {
     return [
       {
         name: 'username',
@@ -72,7 +74,7 @@ export default class RegisterPage extends Vue {
         attributes: {
           autofocus: true
         }
-      },
+      } as FormInputSchema,
       {
         name: 'email',
         type: 'email',
@@ -81,7 +83,7 @@ export default class RegisterPage extends Vue {
           IsRequired(),
           IsEmail()
         ]
-      },
+      } as FormInputSchema,
       {
         name: 'emailConfirm',
         label: 'Confirm Email',
@@ -93,7 +95,7 @@ export default class RegisterPage extends Vue {
             return value === this.formData.email || 'Does not match email.'
           }
         ]
-      },
+      } as FormInputSchema,
       {
         name: 'password',
         type: 'password',
@@ -103,7 +105,7 @@ export default class RegisterPage extends Vue {
           MinLength(2),
           MaxLength(32)
         ]
-      },
+      } as FormInputSchema,
       {
         name: 'passwordConfirm',
         label: 'Confirm Password',
@@ -115,7 +117,7 @@ export default class RegisterPage extends Vue {
             return value === this.formData.password || 'Does not match other password'
           }
         ]
-      }
+      } as FormInputSchema
     ]
   }
 }

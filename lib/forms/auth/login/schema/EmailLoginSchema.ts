@@ -1,10 +1,10 @@
-import EmailFieldSchema from './EmailFieldSchema'
-import PasswordFieldSchema from './PasswordFieldSchema'
-import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
+import EmailFieldSchema from './fields/EmailFieldSchema'
+import PasswordFieldSchema from './fields/PasswordFieldSchema'
+import FormSchema from '~/lib/forms/factory/schema/FormSchema'
 
-const EmailLoginSchema: FormInputSchema[] = [
+const emailLoginSchema: FormSchema = [
   EmailFieldSchema,
   PasswordFieldSchema
 ]
 
-export default EmailLoginSchema
+export default emailLoginSchema

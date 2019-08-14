@@ -1,5 +1,5 @@
 /**
- * Model used for logging in.
+ * Request model to authenticate with.
  */
 export default interface LoginModel {
   identifier: string,

@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import Page from '../lib/api/types/page'
+import Page from '~/lib/api/types/page'
 import BlogPostSummary from '~/lib/types/blog/BlogPostSummary'
 @Component
 export default class IndexPage extends Vue {

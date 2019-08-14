@@ -27,7 +27,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import TCardForm from '~/components/form/TCardForm.vue'
 import { LoginModel, buildSchema } from '~/lib/forms/auth/login'
-import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
+import FormSchema from '~/lib/forms/factory/schema/FormSchema'
 
 // If we should use a username or email input field
 const USE_EMAIL_IDENTIFIER = true
@@ -41,7 +41,7 @@ const USE_EMAIL_IDENTIFIER = true
 })
 export default class LoginPage extends Vue {
   // Configure to use username or email in here
-  private schema: FormInputSchema[] = buildSchema(USE_EMAIL_IDENTIFIER)
+  private schema: FormSchema = buildSchema(USE_EMAIL_IDENTIFIER)
   private showError: boolean = false
   private formData: LoginModel = {
     identifier: 'admin@example.com',

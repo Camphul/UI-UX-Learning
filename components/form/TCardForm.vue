@@ -29,7 +29,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'nuxt-property-decorator'
 import TFormFactory from './factory/TFormFactory.vue'
-import FormInputSchema from '~/lib/forms/factory/FormInputSchema'
+import FormSchema from '~/lib/forms/factory/schema/FormSchema'
 @Component({
   components: {
     TFormFactory
@@ -43,7 +43,7 @@ export default class CardForm extends Vue {
   @Prop({ required: true, default: 'card-form' })
   readonly id!: string;
   @Prop({ required: true })
-  readonly schema!: FormInputSchema[];
+  readonly schema!: FormSchema;
   @Prop({ required: true })
   readonly model!: object;
 
