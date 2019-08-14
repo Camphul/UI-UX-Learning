@@ -1,4 +1,4 @@
-import { MaxLength, IsEmail } from '~/lib/form/rules'
+import { IsEmail } from '~/lib/form/rules'
 import FormInputSchema from '~/lib/form/factory/FormInputSchema'
 
 /**
