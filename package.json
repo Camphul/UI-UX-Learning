@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@nuxt/typescript": "^2.8.1",
-    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-config-typescript": "^0.1.2",
     "@nuxtjs/vuetify": "^1.1.1",
     "@types/eslint-plugin-prettier": "^2.2.0",
     "@types/node": "^12.6.9",

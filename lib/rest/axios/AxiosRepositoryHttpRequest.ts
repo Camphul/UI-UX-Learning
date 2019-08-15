@@ -45,15 +45,19 @@ export default class AxiosRepositoryHttpRequest<T>
 
   public execute(): Promise<AxiosRepositoryHttpResponse<T>> {
     const axiosRequest: AxiosRequestConfig = this.buildAxiosRequest()
-    return this.axios.request(axiosRequest).then((response: AxiosResponse) => {
-      return Promise.resolve(new AxiosRepositoryHttpResponse<T>(response))
-    })
+    return this.axios.request(axiosRequest).then(
+      (response: AxiosResponse): Promise<AxiosRepositoryHttpResponse<T>> => {
+        return Promise.resolve(new AxiosRepositoryHttpResponse<T>(response))
+      }
+    )
   }
 
   public fetch(): Promise<T> {
-    return this.execute().then(response => {
-      return Promise.resolve(response.get())
-    })
+    return this.execute().then(
+      (response): Promise<T> => {
+        return Promise.resolve(response.get())
+      }
+    )
   }
 
   public withBody(payload: any): this {

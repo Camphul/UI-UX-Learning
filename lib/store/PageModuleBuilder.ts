@@ -6,7 +6,8 @@ import {
   PageGetterTree,
   PageMutationTree,
   PageState,
-  PageStateFunction, VuexResult
+  PageStateFunction,
+  VuexResult
 } from './Types'
 import Page, { PageRequest } from '~/lib/rest/types/page'
 import PageableRepository from '~/lib/rest/base/PageableRepository'
@@ -68,7 +69,9 @@ export default class PageModuleBuilder<
   /**
    * Get state for module
    */
-  public stateWith<E extends PageState<T>>(customState: any): PageStateFunction<T, E> {
+  public stateWith<E extends PageState<T>>(
+    customState: any
+  ): PageStateFunction<T, E> {
     return (): E => {
       return Object.assign(defaultPageState, customState) as E
     }
@@ -85,7 +88,9 @@ export default class PageModuleBuilder<
    * Add custom actions
    * @param customActions custom actions to add.
    */
-  public actionsWith(customActions: PageActionTree<T, S>): PageActionTree<T, S> {
+  public actionsWith(
+    customActions: PageActionTree<T, S>
+  ): PageActionTree<T, S> {
     return Object.assign(this.actions(), customActions)
   }
 
@@ -108,9 +113,11 @@ export default class PageModuleBuilder<
         return this.$repo
           .get<REPO>(repoName)
           .showPage(pageConfig)
-          .then((response: Page<T>): VuexResult => {
-            return commit('setPage', response)
-          })
+          .then(
+            (response: Page<T>): VuexResult => {
+              return commit('setPage', response)
+            }
+          )
       }
     }
   }
@@ -155,7 +162,9 @@ export default class PageModuleBuilder<
    * Use getters and add your own
    * @param customGetters
    */
-  public gettersWith(customGetters: PageGetterTree<T, S>): PageGetterTree<T, S> {
+  public gettersWith(
+    customGetters: PageGetterTree<T, S>
+  ): PageGetterTree<T, S> {
     return Object.assign(this.getters(), customGetters)
   }
 

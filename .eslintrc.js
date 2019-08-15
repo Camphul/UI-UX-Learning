@@ -12,13 +12,14 @@ module.exports = {
     warnOnUnsupportedTypeScriptVersion: false
   },
   extends: [
-    '@nuxtjs',
+    '@nuxtjs/eslint-config-typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/recommended',
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended'
   ],
   rules: {
+    'no-console': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-object-literal-type-assertion': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
@@ -36,6 +37,7 @@ module.exports = {
       },
       svg: 'always',
       math: 'always'
-    }]
+    }],
+    'max-len': ["error", { "code": 140 }]
   }
 }
