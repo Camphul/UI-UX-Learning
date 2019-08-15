@@ -33,6 +33,7 @@
     ]
   },
   "files": [
-    "index.d.ts"
+    "index.d.ts",
+    "node_modules/axios/axios.d.ts"
   ]
 }

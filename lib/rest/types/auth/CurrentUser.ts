@@ -1,4 +1,4 @@
-import DateTime from '../DateTime'
+import { DateTime } from '~/lib/rest/types'
 
 interface Role {
   name: string,

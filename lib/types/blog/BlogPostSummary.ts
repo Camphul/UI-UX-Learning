@@ -1,5 +1,5 @@
-import DateTime from '../../api/types/DateTime'
-import EmbeddedUser from '~/lib/api/types/user/EmbeddedUser'
+import { DateTime } from '~/lib/rest/types'
+import EmbeddedUser from '~/lib/rest/types/user/EmbeddedUser'
 
 export default interface BlogPostSummary {
   id: string,

@@ -1,8 +1,22 @@
-import RestClient from '~/lib/api/RestClient'
+import { Vue } from 'nuxt-property-decorator'
+import RepositoryRegistry from '../lib/rest/RepositoryRegistry'
+import TestRepository from '../lib/rest/TestRepository'
+import RepositoryConstructor from '../lib/rest/base/RepositoryConstructor'
+import Repository from '../lib/rest/base/Repository'
+import { NuxtContext } from '../lib/types/nuxt'
 
-export default ({ app }, inject) => {
+const repositoryRegistry = RepositoryRegistry.init()
+function registerRepositories (app: Vue) {
+  add(TestRepository, 'blogs', app)
+}
+
+function add (RepostoryConstr: RepositoryConstructor, resource: string, app: Vue, name: string = resource): void {
+  const repo: Repository = new RepostoryConstr(resource, app)
+  repositoryRegistry.register(name, repo)
+}
+
+export default (context: NuxtContext, inject) => {
   // Set the function directly on the context.app object
-  const service = new RestClient(app.$axios)
-  inject('rest', service)
-  inject('restRepo', resource => service.resource(resource))
+  registerRepositories(context.app)
+  inject('repo', repositoryRegistry)
 }

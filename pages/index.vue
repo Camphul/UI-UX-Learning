@@ -6,36 +6,46 @@
     <p>{{ blogs }}</p>
     <v-btn
       color="primary"
-      @click="doLogout"
+      @click="doPost"
     >
-      Logout
+      Create post
     </v-btn>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import Page from '~/lib/api/types/page'
+import TestRepository from '~/lib/rest/TestRepository'
+import { NuxtApp, NuxtContext } from '~/lib/types/nuxt'
 import BlogPostSummary from '~/lib/types/blog/BlogPostSummary'
+import Page from '~/lib/rest/types/page'
+import { UUIDResponse } from '~/lib/rest/types'
 @Component
 export default class IndexPage extends Vue {
-  private blogPage: Page<BlogPostSummary>;
+  private blogs: Page<BlogPostSummary>
 
-  async asyncData ({ app }) {
-    const blogPage = await app.$restRepo('blogs').index<Page<BlogPostSummary>>()
+  async asyncData (context: NuxtContext): any {
+    const app: NuxtApp = context.app
+    const blogsRepo: TestRepository = app.$repo.get<TestRepository>('blogs')
+    const blogs = (await blogsRepo.index()) as Page<BlogPostSummary>
     return {
-      blogPage
+      blogs
     }
-  }
-  get blogs (): BlogPostSummary[] {
-    return this.blogPage.content
   }
 
   get user () {
     return this.$auth.user
   }
-  doLogout () {
-    this.$auth.logout()
+
+  doPost () {
+    this.$repo.get('blogs').create({
+      title: 'Post from within vue',
+      content: 'hahaha vet dfdfdfdfstoer'
+    }).then((id: UUIDResponse) => {
+      alert('Posted id ' + id.id)
+    }).catch((error: Error) => {
+      alert('Something went wrong: ' + error.message)
+    })
   }
 }
 </script>

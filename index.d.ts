@@ -1,9 +1,8 @@
 import Vue, { ComponentOptions } from 'vue'
 import { CookieAttributes } from 'js-cookie'
 import { VueWaitInstance } from 'vue-wait'
-import User from '~/lib/api/types/auth/CurrentUser'
-import RestClient from '~/lib/api/RestClient'
-import Repository from '~/lib/api/Repository'
+import User from '~/lib/rest/types/auth/CurrentUser'
+import RepositoryRegistry from '~/lib/rest/RepositoryRegistry'
 interface StorageCookieOptions extends CookieAttributes {
   cookie: {
     prefix: string;
@@ -53,10 +52,10 @@ declare module 'vue/types/options' {
 }
 
 declare module 'vue/types/vue' {
+
   interface Vue {
     $auth: Auth<User>;
     $wait: VueWaitInstance;
-    $rest: RestClient;
-    $restRepo: Repository;
+    $repo: RepositoryRegistry;
   }
 }
