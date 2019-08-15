@@ -4,6 +4,7 @@ import { CookieAttributes } from 'js-cookie'
 import { VueWaitInstance } from 'vue-wait'
 import User from '../lib/rest/types/auth/CurrentUser'
 import RepositoryRegistry from '../lib/rest/RepositoryRegistry'
+import ServiceRegistry from '../lib/service/ServiceRegistry'
 interface StorageCookieOptions extends CookieAttributes {
   cookie: {
     prefix: string;
@@ -53,10 +54,12 @@ declare module 'vue/types/options' {
 }
 
 declare module '@nuxt/vue-app' {
+
   interface Context {
     $auth: Auth<User>
     $wait: VueWaitInstance
     $repo: RepositoryRegistry
+    $service: ServiceRegistry
   }
 }
 
@@ -65,6 +68,7 @@ declare module '@nuxt/vue-app' {
     $auth: Auth<User>
     $wait: VueWaitInstance
     $repo: RepositoryRegistry
+    $service: ServiceRegistry
   }
 }
 
@@ -74,5 +78,6 @@ declare module 'vue/types/vue' {
     $auth: Auth<User>
     $wait: VueWaitInstance
     $repo: RepositoryRegistry
+    $service: ServiceRegistry
   }
 }

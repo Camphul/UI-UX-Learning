@@ -29,7 +29,8 @@ const config: NuxtConfiguration = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/RestPlugin'
+    '~/plugins/RestPlugin',
+    '~/plugins/ServicePlugin'
   ],
   /*
   ** Nuxt.js dev-modules

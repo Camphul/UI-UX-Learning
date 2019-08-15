@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import BlogService from '~/lib/blog/BlogService'
 
 @Component
 export default class IndexPage extends Vue {
@@ -34,6 +35,7 @@ export default class IndexPage extends Vue {
   }
 
   doCustom (): void {
+    this.$service.get<BlogService>('blog').hello()
     this.$store.dispatch('blogs/customAction')
   }
 

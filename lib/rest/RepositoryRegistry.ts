@@ -2,7 +2,7 @@ import Repository from '~/lib/rest/base/Repository'
 import { StringTMap } from '~/lib/types/Maps'
 import Registry from '~/lib/Registry'
 export default class RepositoryRegistry implements Registry<Repository> {
-  private map!: StringTMap<Repository>
+  private readonly map!: StringTMap<Repository>
 
   private constructor () {
     this.map = {}
