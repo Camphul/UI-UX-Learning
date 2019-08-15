@@ -3,7 +3,9 @@
     <h1>
       UX/UI learning
     </h1>
-    <p>{{ blogs }}</p>
+    <p v-for="blog in blogs" :key="blog.id">
+      <strong>{{ blog.title }}</strong>
+    </p>
     <v-btn
       color="primary"
       @click="doPost"
@@ -16,12 +18,11 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { UUIDResponse } from '~/lib/rest/types'
-import { CreateBlogPostRequest } from '../lib/blog/types';
+
 @Component
 export default class IndexPage extends Vue {
-
   async fetch ({ store }) {
-    await store.dispatch('blogs/query')
+    await store.dispatch('blogs/showPage')
   }
 
   get blogs () {
@@ -34,10 +35,9 @@ export default class IndexPage extends Vue {
 
   doPost () {
     this.$store.dispatch('blogs/create', {
-      title: 'Get yeetede',
+      title: ('From vue: ' + new Date().getTime()),
       content: 'hahaha vet dfdfdfdfstoer'
     }).then((id: UUIDResponse) => {
-      alert('Posted id ' + id.id)
       this.$store.dispatch('blogs/refresh')
     }).catch((error: Error) => {
       alert('Something went wrong: ' + error.message)
