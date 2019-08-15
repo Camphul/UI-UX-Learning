@@ -1,3 +1,4 @@
+import { Vue } from 'nuxt-property-decorator'
 import AxiosRepositoryHttpRequest from './AxiosRepositoryHttpRequest'
 import Repository from '~/lib/rest/base/Repository'
 import { Axios } from '~/lib/types'
@@ -6,11 +7,11 @@ import Page from '~/lib/rest/types/page'
 import { MessageResponse, UUIDResponse } from '~/lib/rest/types'
 
 export default class AxiosRepository implements Repository {
-  protected app!: any
+  protected app!: Vue
   protected axios!: Axios
   protected resource!: string
 
-  constructor (resource: string, app: any) {
+  constructor (resource: string, app: Vue) {
     this.resource = resource
     this.app = app
     this.axios = app.$axios as Axios

@@ -1,13 +1,13 @@
 import { Vue } from 'nuxt-property-decorator'
-import RepositoryRegistry from '../lib/rest/RepositoryRegistry'
-import TestRepository from '../lib/rest/TestRepository'
-import RepositoryConstructor from '../lib/rest/base/RepositoryConstructor'
-import Repository from '../lib/rest/base/Repository'
-import { NuxtContext } from '../lib/types/nuxt'
+import RepositoryRegistry from '~/lib/rest/RepositoryRegistry'
+import BlogRepository from '~/lib/blog/BlogRepository'
+import RepositoryConstructor from '~/lib/rest/base/RepositoryConstructor'
+import Repository from '~/lib/rest/base/Repository'
+import { NuxtContext } from '~/lib/types/nuxt'
 
 const repositoryRegistry = RepositoryRegistry.init()
 function registerRepositories (app: Vue) {
-  add(TestRepository, 'blogs', app)
+  add(BlogRepository, 'blogs', app)
 }
 
 function add (RepostoryConstr: RepositoryConstructor, resource: string, app: Vue, name: string = resource): void {

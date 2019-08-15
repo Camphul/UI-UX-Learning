@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import TestRepository from '~/lib/rest/TestRepository'
+import BlogRepository from '../lib/blog/BlogRepository'
 import { NuxtApp, NuxtContext } from '~/lib/types/nuxt'
 import BlogPostSummary from '~/lib/types/blog/BlogPostSummary'
 import Page from '~/lib/rest/types/page'
@@ -26,8 +26,8 @@ export default class IndexPage extends Vue {
 
   async asyncData (context: NuxtContext): any {
     const app: NuxtApp = context.app
-    const blogsRepo: TestRepository = app.$repo.get<TestRepository>('blogs')
-    const blogs = (await blogsRepo.index()) as Page<BlogPostSummary>
+    const blogsRepo: BlogRepository = app.$repo.get<BlogRepository>('blogs')
+    const blogs = (await blogsRepo.showPage()) as Page<BlogPostSummary>
     return {
       blogs
     }

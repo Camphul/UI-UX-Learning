@@ -1,8 +1,22 @@
 import Repository from './Repository'
-import Page from '~/lib/rest/types/page'
+import Page, { PageRequest } from '~/lib/rest/types/page'
 
-export default interface PageableRepository extends Repository{
-  nextPage(page: Page<any>): void
-  previousPage(page: Page<any>): void
-  showPage(index: number): void
+export default interface PageableRepository extends Repository {
+  /**
+   * Get next page
+   * @param page current page
+   */
+  nextPage(page: Page<any>): Promise<Page<any>>
+
+  /**
+   * Get previous page
+   * @param page
+   */
+  previousPage(page: Page<any>): Promise<Page<any>>
+
+  /**
+   * Show page
+   * @param request page request config
+   */
+  showPage(request: PageRequest): Promise<Page<any>>
 }
