@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios/index'
 import RepositoryHttpResponse from '~/lib/rest/http/RepositoryHttpResponse'
 
 export default class AxiosRepositoryHttpResponse<T> implements RepositoryHttpResponse<T, AxiosResponse> {
-  private response!: AxiosResponse
+  private readonly response!: AxiosResponse
 
   constructor (response: AxiosResponse) {
     this.response = response

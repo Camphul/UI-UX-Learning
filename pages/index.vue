@@ -27,7 +27,7 @@ export default class IndexPage extends Vue {
   async asyncData (context: NuxtContext): any {
     const app: NuxtApp = context.app
     const blogsRepo: BlogRepository = app.$repo.get<BlogRepository>('blogs')
-    const blogs = (await blogsRepo.showPage()) as Page<BlogPostSummary>
+    const blogs = await blogsRepo.showPage()
     return {
       blogs
     }
@@ -38,7 +38,7 @@ export default class IndexPage extends Vue {
   }
 
   doPost () {
-    this.$repo.get('blogs').create({
+    this.$repo.get<BlogRepository>('blogs').create({
       title: 'Post from within vue',
       content: 'hahaha vet dfdfdfdfstoer'
     }).then((id: UUIDResponse) => {

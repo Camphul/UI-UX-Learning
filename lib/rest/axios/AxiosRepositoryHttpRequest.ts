@@ -64,7 +64,7 @@ export default class AxiosRepositoryHttpRequest<T> implements RepositoryHttpRequ
     return this
   }
 
-  withResource (resource: string): this {
+  forResource (resource: string): this {
     if (!resource.startsWith('/')) {
       resource = '/' + resource
     }
@@ -73,22 +73,6 @@ export default class AxiosRepositoryHttpRequest<T> implements RepositoryHttpRequ
   }
 
   static init<E> (axios: Axios, resource: string, httpMethod: string = 'get'): AxiosRepositoryHttpRequest<E> {
-    return new AxiosRepositoryHttpRequest<E>(axios).withResource(resource).method(httpMethod)
-  }
-
-  static get<E> (axios: Axios, resource: string): AxiosRepositoryHttpRequest<E> {
-    return this.init<E>(axios, resource, 'get')
-  }
-
-  static post<E> (axios: Axios, resource: string): AxiosRepositoryHttpRequest<E> {
-    return this.init<E>(axios, resource, 'post')
-  }
-
-  static delete<E> (axios: Axios, resource: string): AxiosRepositoryHttpRequest<E> {
-    return this.init<E>(axios, resource, 'delete')
-  }
-
-  static put<E> (axios: Axios, resource: string): AxiosRepositoryHttpRequest<E> {
-    return this.init<E>(axios, resource, 'put')
+    return new AxiosRepositoryHttpRequest<E>(axios).forResource(resource).method(httpMethod)
   }
 }

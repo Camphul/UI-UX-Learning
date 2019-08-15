@@ -10,7 +10,7 @@ export default interface RepositoryHttpRequest<T, NATIVERESPONSE, RESPONSE exten
    * Define resource
    * @param resource
    */
-  withResource (resource: string): this,
+  forResource (resource: string): this,
 
   /**
    * Define payload

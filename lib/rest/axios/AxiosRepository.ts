@@ -2,9 +2,6 @@ import { Vue } from 'nuxt-property-decorator'
 import AxiosRepositoryHttpRequest from './AxiosRepositoryHttpRequest'
 import Repository from '~/lib/rest/base/Repository'
 import { Axios } from '~/lib/types'
-import BlogPostSummary from '~/lib/types/blog/BlogPostSummary'
-import Page from '~/lib/rest/types/page'
-import { MessageResponse, UUIDResponse } from '~/lib/rest/types'
 
 export default class AxiosRepository implements Repository {
   protected app!: Vue
@@ -26,11 +23,11 @@ export default class AxiosRepository implements Repository {
   }
 
   index (): Promise<any> {
-    return this.baseRequest<Page<BlogPostSummary>>().fetch()
+    return this.baseRequest<any>().fetch()
   }
 
-  create<P=any> (payload: P): Promise<any> {
-    return this.baseRequest<UUIDResponse>('post').withBody(payload).fetch()
+  create (payload: any): Promise<any> {
+    return this.baseRequest<any>('post').withBody(payload).fetch()
   }
 
   show (id: string): Promise<any> {
@@ -38,7 +35,7 @@ export default class AxiosRepository implements Repository {
   }
 
   delete (id: string): Promise<any> {
-    return this.baseRequest<MessageResponse>('delete').appendUrl(id).fetch()
+    return this.baseRequest<any>('delete').appendUrl(id).fetch()
   }
 
   getRepositoryResource (): string {

@@ -1,5 +1,5 @@
-export default interface RepositoryHttpResponse<T, RESPONSE> {
-  getNativeHttpClientResponse(): RESPONSE,
+export default interface RepositoryHttpResponse<T, N> {
+  getNativeHttpClientResponse(): N,
 
   get (): T,
 
