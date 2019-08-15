@@ -1,13 +1,32 @@
 import BlogPostSummary from '~/lib/types/blog/BlogPostSummary'
 import { CreateBlogPostRequest } from '~/lib/blog/types'
 import PageModuleBuilder from '~/lib/store/PageModuleBuilder'
+import { CustomizedPageState } from '~/lib/store/Types'
 
-const builder = PageModuleBuilder.build<BlogPostSummary, CreateBlogPostRequest>('blogs')
+interface BlogsPageState extends CustomizedPageState<BlogPostSummary> {
+  customValue: string
+}
 
-export const state = builder.state()
+const builder = PageModuleBuilder.buildCustomizable<BlogPostSummary, BlogsPageState, CreateBlogPostRequest>('blogs')
 
-export const actions = builder.actions()
+export const state = builder.stateWith({
+  customValue: 'This is a custom value'
+})
 
-export const getters = builder.getters()
+export const actions = builder.actionsWith({
+  customAction ({ commit }) {
+    commit('setCustomValue', new Date().toLocaleTimeString())
+  }
+})
 
-export const mutations = builder.mutations()
+export const getters = builder.gettersWith({
+  customGetter (state): string {
+    return state.customValue
+  }
+})
+
+export const mutations = builder.mutationsWith({
+  setCustomValue (state, payload: string) {
+    state.customValue = payload
+  }
+})

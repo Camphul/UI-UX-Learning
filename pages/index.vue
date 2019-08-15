@@ -6,23 +6,39 @@
     <p v-for="blog in blogs" :key="blog.id">
       <strong>{{ blog.title }}</strong>
     </p>
+    <p>
+      Custom store things:
+      <strong>
+        {{ customGetter }}
+      </strong>
+    </p>
     <v-btn
       color="primary"
       @click="doPost"
     >
       Create post
     </v-btn>
+    <v-btn @click="doCustom">
+      Custom custom action
+    </v-btn>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import { UUIDResponse } from '~/lib/rest/types'
 
 @Component
 export default class IndexPage extends Vue {
   async fetch ({ store }) {
     await store.dispatch('blogs/showPage')
+  }
+
+  doCustom (): void {
+    this.$store.dispatch('blogs/customAction')
+  }
+
+  get customGetter () {
+    return this.$store.getters['blogs/customGetter']
   }
 
   get blogs () {
@@ -37,7 +53,7 @@ export default class IndexPage extends Vue {
     this.$store.dispatch('blogs/create', {
       title: ('From vue: ' + new Date().getTime()),
       content: 'hahaha vet dfdfdfdfstoer'
-    }).then((id: UUIDResponse) => {
+    }).then(() => {
       this.$store.dispatch('blogs/refresh')
     }).catch((error: Error) => {
       alert('Something went wrong: ' + error.message)
