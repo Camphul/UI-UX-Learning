@@ -8,7 +8,7 @@ export default class AxiosRepository implements Repository {
   protected axios!: Axios
   protected resource!: string
 
-  constructor (resource: string, app: Vue) {
+  public constructor(resource: string, app: Vue) {
     this.resource = resource
     this.app = app
     this.axios = app.$axios as Axios
@@ -18,27 +18,35 @@ export default class AxiosRepository implements Repository {
    * Construct a new request base.
    * @param method http method, optional
    */
-  protected baseRequest<T> (method: string = 'get'): AxiosRepositoryHttpRequest<T> {
+  protected baseRequest<T>(
+    method: string = 'get'
+  ): AxiosRepositoryHttpRequest<T> {
     return AxiosRepositoryHttpRequest.init<T>(this.axios, this.resource, method)
   }
 
-  index (): Promise<any> {
+  public index(): Promise<any> {
     return this.baseRequest<any>().fetch()
   }
 
-  create (payload: any): Promise<any> {
-    return this.baseRequest<any>('post').withBody(payload).fetch()
+  public create(payload: any): Promise<any> {
+    return this.baseRequest<any>('post')
+      .withBody(payload)
+      .fetch()
   }
 
-  show (id: string): Promise<any> {
-    return this.baseRequest<any>().appendUrl(id).fetch()
+  public show(id: string): Promise<any> {
+    return this.baseRequest<any>()
+      .appendUrl(id)
+      .fetch()
   }
 
-  delete (id: string): Promise<any> {
-    return this.baseRequest<any>('delete').appendUrl(id).fetch()
+  public delete(id: string): Promise<any> {
+    return this.baseRequest<any>('delete')
+      .appendUrl(id)
+      .fetch()
   }
 
-  getRepositoryResource (): string {
+  public getRepositoryResource(): string {
     return this.resource
   }
 }

@@ -13,16 +13,11 @@
     </v-card-text>
     <v-card-actions>
       <slot name="submitButton">
-        <v-btn
-          color="primary"
-          type="submit"
-          :form="id"
-          :loading="isLoading"
-        >
+        <v-btn color="primary" type="submit" :form="id" :loading="isLoading">
           {{ submitButtonText }}
         </v-btn>
       </slot>
-      <slot name="actionButtons" />
+      <slot name="actionButtons"></slot>
     </v-card-actions>
   </v-card>
 </template>
@@ -37,22 +32,21 @@ import FormSchema from '~/lib/forms/factory/schema/FormSchema'
 })
 export default class CardForm extends Vue {
   @Prop({ required: false, default: 'Form' })
-  readonly title!: string;
+  readonly title!: string
   @Prop({ required: false, default: 'Submit' })
-  readonly submitButtonText!: string;
+  readonly submitButtonText!: string
   @Prop({ required: true, default: 'card-form' })
-  readonly id!: string;
+  readonly id!: string
   @Prop({ required: true })
-  readonly schema!: FormSchema;
+  readonly schema!: FormSchema
   @Prop({ required: true })
-  readonly model!: object;
+  readonly model!: object
 
-  get isLoading () {
+  get isLoading() {
     return this.$wait.is(this.id + '-wait')
   }
 
   @Emit('submit')
-  onSubmit () {
-  }
+  onSubmit() {}
 }
 </script>

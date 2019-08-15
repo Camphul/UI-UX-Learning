@@ -1,10 +1,5 @@
 <template>
-  <v-navigation-drawer
-    v-model="open"
-    app
-    clipped
-    left
-  >
+  <v-navigation-drawer v-model="open" app clipped left>
     <v-list dense>
       <slot name="items">
         <v-list-item to="/create">
@@ -26,7 +21,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class TNavigationDrawer extends Vue {
   open: boolean = false
 
-  toggle () {
+  toggle() {
     this.open = !this.open
   }
 }

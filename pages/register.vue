@@ -15,10 +15,7 @@
         </v-btn>
       </template>
     </t-card-form>
-    <v-snackbar
-      v-model="showError"
-      color="error"
-    >
+    <v-snackbar v-model="showError" color="error">
       {{ errorMessage }}
     </v-snackbar>
   </div>
@@ -26,7 +23,13 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import StringRule from '~/lib/forms/rules/StringRule'
-import { IsEmail, IsRequired, MaxLength, MinLength, NotBlank } from '~/lib/forms/rules'
+import {
+  IsEmail,
+  IsRequired,
+  MaxLength,
+  MinLength,
+  NotBlank
+} from '~/lib/forms/rules'
 import FormSchema from '~/lib/forms/factory/schema/FormSchema'
 import RegisterFormModel from '~/lib/forms/auth/register/RegisterFormModel'
 import FormInputSchema from '~/lib/forms/factory/schema/FormInputSchema'
@@ -52,7 +55,7 @@ export default class RegisterPage extends Vue {
     passwordConfirm: ''
   }
 
-  doRegister () {
+  doRegister() {
     this.$wait.start('register-form-wait')
     alert('Not implemented!')
     setTimeout(() => {
@@ -60,18 +63,13 @@ export default class RegisterPage extends Vue {
     }, 3000)
   }
 
-  get registerSchema (): FormSchema {
+  get registerSchema(): FormSchema {
     return [
       {
         name: 'username',
         type: 'text',
         icon: 'mdi-account',
-        rules: [
-          IsRequired(),
-          MinLength(2),
-          MaxLength(16),
-          NotBlank()
-        ],
+        rules: [IsRequired(), MinLength(2), MaxLength(16), NotBlank()],
         attributes: {
           autofocus: true
         }
@@ -80,10 +78,7 @@ export default class RegisterPage extends Vue {
         name: 'email',
         type: 'email',
         icon: 'mdi-email',
-        rules: [
-          IsRequired(),
-          IsEmail()
-        ]
+        rules: [IsRequired(), IsEmail()]
       } as FormInputSchema,
       {
         name: 'emailConfirm',
@@ -92,7 +87,7 @@ export default class RegisterPage extends Vue {
         icon: 'mdi-email',
         rules: [
           IsEmail(),
-          ((value) => {
+          (value => {
             return value === this.formData.email || 'Does not match email.'
           }) as StringRule
         ]
@@ -101,11 +96,7 @@ export default class RegisterPage extends Vue {
         name: 'password',
         type: 'password',
         icon: 'mdi-lock',
-        rules: [
-          IsRequired(),
-          MinLength(2),
-          MaxLength(32)
-        ]
+        rules: [IsRequired(), MinLength(2), MaxLength(32)]
       } as FormInputSchema,
       {
         name: 'passwordConfirm',
@@ -115,7 +106,10 @@ export default class RegisterPage extends Vue {
         rules: [
           IsRequired(),
           ((value: string) => {
-            return value === this.formData.password || 'Does not match other password'
+            return (
+              value === this.formData.password ||
+              'Does not match other password'
+            )
           }) as StringRule
         ]
       } as FormInputSchema

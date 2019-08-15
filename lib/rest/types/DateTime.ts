@@ -1,4 +1,4 @@
 export default interface DateTime {
-  nano: number,
+  nano: number
   epochSeconds: number
 }

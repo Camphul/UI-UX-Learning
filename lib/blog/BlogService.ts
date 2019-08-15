@@ -4,11 +4,11 @@ import { Vue } from '~/node_modules/nuxt-property-decorator'
 export default class BlogService implements Service {
   private readonly app!: Vue
 
-  constructor (app: Vue) {
+  public constructor(app: Vue) {
     this.app = app
   }
 
-  hello () {
+  public hello(): void {
     console.log('HELLOOO')
   }
 }

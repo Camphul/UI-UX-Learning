@@ -11,12 +11,7 @@ const UsernameFieldSchema: FormInputSchema = {
   attributes: {
     autofocus: true
   },
-  rules: [
-    IsRequired(),
-    MinLength(2),
-    MaxLength(256),
-    NotBlank()
-  ],
+  rules: [IsRequired(), MinLength(2), MaxLength(256), NotBlank()],
   icon: 'mdi-account'
 }
 

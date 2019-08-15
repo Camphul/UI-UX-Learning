@@ -6,16 +6,17 @@ import Service from '~/lib/service/Service'
 import BlogService from '~/lib/blog/BlogService'
 
 const serviceRegistry = ServiceRegistry.init()
-function registerServices (app: Vue) {
-  add(BlogService, app, 'blog')
-}
 
-function add (ServiceConstr: ServiceConstructor, app: Vue, name: string): void {
+function add(ServiceConstr: ServiceConstructor, app: Vue, name: string): void {
   const serv: Service = new ServiceConstr(app)
   serviceRegistry.register(name, serv)
 }
 
-export default (context: NuxtContext, inject) => {
+function registerServices(app: Vue): void {
+  add(BlogService, app, 'blog')
+}
+
+export default (context: NuxtContext, inject): void => {
   // Set the function directly on the context.app object
   registerServices(context.app)
   inject('service', serviceRegistry)

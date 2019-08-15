@@ -1,5 +1,5 @@
 export default interface Sort {
-  unsorted: boolean,
-  sorted: boolean,
+  unsorted: boolean
+  sorted: boolean
   empty: boolean
 }

@@ -7,7 +7,11 @@
 import StringRule from './StringRule'
 import { SuccessError } from '~/lib/types'
 
-export default function build (size: number, included: boolean = true, message: string = `Exceeds limit of ${size} characters.`): StringRule {
+export default function build(
+  size: number,
+  included: boolean = true,
+  message: string = `Exceeds limit of ${size} characters.`
+): StringRule {
   return ((value: string): SuccessError => {
     if (included) {
       return value.length <= size || message

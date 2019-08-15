@@ -15,10 +15,7 @@
         </v-btn>
       </template>
     </t-card-form>
-    <v-snackbar
-      v-model="showError"
-      color="error"
-    >
+    <v-snackbar v-model="showError" color="error">
       Incorrect {{ identificationType }}/password combination.
     </v-snackbar>
   </div>
@@ -48,7 +45,7 @@ export default class LoginPage extends Vue {
     password: 'test'
   }
 
-  async doLogin () {
+  async doLogin() {
     try {
       this.$wait.start('login-form-wait')
       await this.$auth.loginWith('local', {
@@ -61,7 +58,7 @@ export default class LoginPage extends Vue {
     }
   }
 
-  get identificationType () {
+  get identificationType() {
     return USE_EMAIL_IDENTIFIER ? 'email' : 'username'
   }
 }

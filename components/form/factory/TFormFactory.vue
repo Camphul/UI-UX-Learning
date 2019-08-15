@@ -1,9 +1,5 @@
 <template>
-  <v-form
-    :id="id"
-    ref="form"
-    @submit.prevent="handleSubmitValidation"
-  >
+  <v-form :id="id" ref="form" @submit.prevent="handleSubmitValidation">
     <t-form-factory-input
       v-for="field in schema"
       :key="field.name"
@@ -35,19 +31,19 @@ export default class TFormFactory extends Vue {
    * Form id.
    */
   @Prop({ required: true })
-  readonly id!: string;
+  readonly id!: string
   /**
    * Form schema
    */
   @Prop({ required: true })
-  readonly schema!: FormSchema;
+  readonly schema!: FormSchema
   /**
    * Form values
    */
   @Prop({ required: true })
-  model!: any;
+  model!: any
 
-  get isLoading () {
+  get isLoading() {
     return this.$wait.is(this.id + '-wait')
   }
 
@@ -55,18 +51,18 @@ export default class TFormFactory extends Vue {
    * Event which gets called on submit when the form is valid.
    */
   @Emit('submit')
-  onSubmitValidated () {}
+  onSubmitValidated() {}
 
   /**
    * Event which gets called on submit when the form is invalid.
    */
   @Emit('invalid')
-  onSubmitInvalid () {}
+  onSubmitInvalid() {}
 
   /**
    * Handle submits with validation.
    */
-  private handleSubmitValidation (event) {
+  private handleSubmitValidation(event) {
     event.preventDefault()
     if (this.$refs.form.validate()) {
       this.onSubmitValidated()

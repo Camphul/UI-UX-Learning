@@ -1,4 +1,4 @@
 export default interface PageRequestConfig {
-  page: number,
+  page: number
   size: number
 }

@@ -1,4 +1,4 @@
 export interface CreateBlogPostRequest {
-  title: string,
+  title: string
   content: string
 }

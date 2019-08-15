@@ -21,54 +21,70 @@ export default class TFormFactoryInput extends Vue {
     required: false,
     default: 'text'
   })
-  readonly type!: string;
+  readonly type!: string
   @Prop({
     required: true
   })
-  readonly name!: string;
+  readonly name!: string
   @Prop({
     required: false,
     default: null
   })
-  readonly label!: string;
+  readonly label!: string
   @Prop({
     required: false,
     default: null
   })
-  readonly icon!: string;
+  readonly icon!: string
   @Prop({
     required: false,
     default: () => {}
   })
-  readonly attributes!: object;
+  readonly attributes!: object
   @Prop({
     required: false,
     default: () => []
   })
-  readonly rules!: Rule<any>[];
+  readonly rules!: Rule<any>[]
 
   /**
    * Parsed component attributes
    */
-  private get computedChildAttributes (): object {
+  private get computedChildAttributes(): object {
     let parsed: object = this.attributes
 
-    parsed = Object.assign({}, this.$attrs, {
-      label: this.label == null ? StringUtil.uppercaseFirstLetter(this.name) : this.label,
-      name: this.name,
-      rules: this.rules
-    }, parsed)
+    parsed = Object.assign(
+      {},
+      this.$attrs,
+      {
+        label:
+          this.label == null
+            ? StringUtil.uppercaseFirstLetter(this.name)
+            : this.label,
+        name: this.name,
+        rules: this.rules
+      },
+      parsed
+    )
 
     if (this.icon != null) {
-      parsed = Object.assign({}, {
-        'prepend-icon': this.icon
-      }, parsed)
+      parsed = Object.assign(
+        {},
+        {
+          'prepend-icon': this.icon
+        },
+        parsed
+      )
     }
 
     if (TextInputType.supports(this.type)) {
-      parsed = Object.assign({}, {
-        type: TextInputType[this.type]
-      }, parsed)
+      parsed = Object.assign(
+        {},
+        {
+          type: TextInputType[this.type]
+        },
+        parsed
+      )
     }
 
     return parsed
@@ -77,7 +93,7 @@ export default class TFormFactoryInput extends Vue {
   /**
    * Get component type
    */
-  private get computedChildComponentType (): string {
+  private get computedChildComponentType(): string {
     return ComponentType.of(this.type)
   }
 }

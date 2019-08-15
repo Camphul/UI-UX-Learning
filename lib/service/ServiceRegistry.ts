@@ -5,11 +5,11 @@ import { StringTMap } from '~/lib/types/Maps'
 export default class ServiceRegistry implements Registry<Service> {
   private readonly map!: StringTMap<Service>
 
-  private constructor () {
+  private constructor() {
     this.map = {}
   }
 
-  get<T extends Service> (key: string): T {
+  public get<T extends Service>(key: string): T {
     const service = this.map[key]
     if (!service) {
       throw new Error('Service not found.')
@@ -17,14 +17,14 @@ export default class ServiceRegistry implements Registry<Service> {
     return this.map[key] as T
   }
 
-  register (key: string, service: Service): void {
+  public register(key: string, service: Service): void {
     if (this.map[key]) {
       throw new Error('Service already registered.')
     }
     this.map[key] = service
   }
 
-  static init (): ServiceRegistry {
+  public static init(): ServiceRegistry {
     return new ServiceRegistry()
   }
 }

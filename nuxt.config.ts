@@ -2,43 +2,37 @@ import NuxtConfiguration from '@nuxt/config'
 const config: NuxtConfiguration = {
   mode: 'universal',
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#fff' },
   /*
-  ** Global CSS
-  */
-  css: [
-    '~/assets/utils.css'
-  ],
+   ** Global CSS
+   */
+  css: ['~/assets/utils.css'],
   /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-    '~/plugins/RestPlugin',
-    '~/plugins/ServicePlugin'
-  ],
+   ** Plugins to load before mounting the App
+   */
+  plugins: ['~/plugins/RestPlugin', '~/plugins/ServicePlugin'],
   /*
-  ** Nuxt.js dev-modules
-  */
-  devModules: [
-    '@nuxtjs/vuetify',
-    ['vue-wait/nuxt', { useVuex: true }]
-  ],
+   ** Nuxt.js dev-modules
+   */
+  devModules: ['@nuxtjs/vuetify', ['vue-wait/nuxt', { useVuex: true }]],
 
   vuetify: {
     theme: {
@@ -50,12 +44,9 @@ const config: NuxtConfiguration = {
     }
   },
   /*
-  ** Nuxt.js modules
-  */
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/auth'
-  ],
+   ** Nuxt.js modules
+   */
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth'],
 
   wait: { useVuex: true },
 
@@ -102,10 +93,9 @@ const config: NuxtConfiguration = {
   },
 
   /*
-  ** Build configuration
-  */
-  build: {
-  }
+   ** Build configuration
+   */
+  build: {}
 }
 
 export default config

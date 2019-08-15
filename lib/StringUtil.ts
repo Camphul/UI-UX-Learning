@@ -2,7 +2,7 @@
  * Uppercase the first letter of a string.
  * @param value string to uppercase.
  */
-function uppercaseFirstLetter (value: string): string {
+function uppercaseFirstLetter(value: string): string {
   if (value.length <= 1) {
     return value.toLocaleUpperCase()
   }

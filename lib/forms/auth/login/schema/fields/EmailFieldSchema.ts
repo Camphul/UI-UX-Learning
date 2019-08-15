@@ -8,9 +8,7 @@ const EmailFieldSchema: FormInputSchema = {
   name: 'identifier',
   type: 'email',
   label: 'Email',
-  rules: [
-    IsEmail()
-  ],
+  rules: [IsEmail()],
   icon: 'mdi-account',
   attributes: {
     autofocus: true

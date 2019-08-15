@@ -1,5 +1,5 @@
 export default interface EmbeddedUser {
-  id: string,
-  username: string,
+  id: string
+  username: string
   email: string
 }

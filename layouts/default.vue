@@ -13,14 +13,14 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import TNavigationDrawer from '~/components/bar/TNavigationDrawer'
 import TAppBar from '~/components/bar/TAppBar'
-    @Component({
-      components: {
-        TNavigationDrawer,
-        TAppBar
-      }
-    })
+@Component({
+  components: {
+    TNavigationDrawer,
+    TAppBar
+  }
+})
 export default class DefaultLayout extends Vue {
-  toggleDrawer () {
+  toggleDrawer() {
     this.$refs.drawer.toggle()
   }
 }

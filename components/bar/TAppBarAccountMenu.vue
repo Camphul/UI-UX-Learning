@@ -1,8 +1,5 @@
 <template>
-  <v-menu
-    left
-    bottom
-  >
+  <v-menu left bottom>
     <template v-slot:activator="{ on }">
       <v-btn icon v-on="on">
         <v-icon>mdi-dots-vertical</v-icon>
@@ -34,7 +31,7 @@ import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component
 export default class TAppBarAccountMenu extends Vue {
-  doLogout () {
+  doLogout() {
     this.$auth.logout()
   }
 }

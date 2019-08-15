@@ -7,12 +7,7 @@ import FormInputSchema from '~/lib/forms/factory/schema/FormInputSchema'
 const PasswordFieldSchema: FormInputSchema = {
   type: 'password',
   name: 'password',
-  rules: [
-    IsRequired(),
-    MinLength(2),
-    MaxLength(256),
-    NotBlank()
-  ],
+  rules: [IsRequired(), MinLength(2), MaxLength(256), NotBlank()],
   icon: 'mdi-lock'
 }
 

@@ -1,7 +1,7 @@
 export default interface RepositoryHttpResponse<T, N> {
-  getNativeHttpClientResponse(): N,
+  getNativeHttpClientResponse(): N
 
-  get (): T,
+  get(): T
 
-  getAny (): any
+  getAny(): any
 }

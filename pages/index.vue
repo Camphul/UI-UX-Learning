@@ -12,10 +12,7 @@
         {{ customGetter }}
       </strong>
     </p>
-    <v-btn
-      color="primary"
-      @click="doPost"
-    >
+    <v-btn color="primary" @click="doPost">
       Create post
     </v-btn>
     <v-btn @click="doCustom">
@@ -30,36 +27,39 @@ import BlogService from '~/lib/blog/BlogService'
 
 @Component
 export default class IndexPage extends Vue {
-  async fetch ({ store }) {
+  async fetch({ store }) {
     await store.dispatch('blogs/showPage')
   }
 
-  doCustom (): void {
+  doCustom(): void {
     this.$service.get<BlogService>('blog').hello()
     this.$store.dispatch('blogs/customAction')
   }
 
-  get customGetter () {
+  get customGetter() {
     return this.$store.getters['blogs/customGetter']
   }
 
-  get blogs () {
+  get blogs() {
     return this.$store.getters['blogs/content']
   }
 
-  get user () {
+  get user() {
     return this.$auth.user
   }
 
-  doPost () {
-    this.$store.dispatch('blogs/create', {
-      title: ('From vue: ' + new Date().getTime()),
-      content: 'hahaha vet dfdfdfdfstoer'
-    }).then(() => {
-      this.$store.dispatch('blogs/refresh')
-    }).catch((error: Error) => {
-      alert('Something went wrong: ' + error.message)
-    })
+  doPost() {
+    this.$store
+      .dispatch('blogs/create', {
+        title: 'From vue: ' + new Date().getTime(),
+        content: 'hahaha vet dfdfdfdfstoer'
+      })
+      .then(() => {
+        this.$store.dispatch('blogs/refresh')
+      })
+      .catch((error: Error) => {
+        alert('Something went wrong: ' + error.message)
+      })
   }
 }
 </script>

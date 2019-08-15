@@ -1,7 +1,13 @@
 /**
  * DRY approach on making common vuex modules for page based resourced.
  */
-import { PageActionTree, PageGetterTree, PageMutationTree, PageState, PageStateFunction } from './Types'
+import {
+  PageActionTree,
+  PageGetterTree,
+  PageMutationTree,
+  PageState,
+  PageStateFunction, VuexResult
+} from './Types'
 import Page, { PageRequest } from '~/lib/rest/types/page'
 import PageableRepository from '~/lib/rest/base/PageableRepository'
 
@@ -38,19 +44,23 @@ const defaultPageState: PageState<any> = {
  * Type T = resource to be found inside page content
  * Type C = type which is used in create
  */
-export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
-  REPO extends PageableRepository = PageableRepository, C = any> {
+export default class PageModuleBuilder<
+  T,
+  S extends PageState<T> = PageState<T>,
+  REPO extends PageableRepository = PageableRepository,
+  C = any
+> {
   private readonly repositoryName!: string
 
-  private constructor (repositoryName: string) {
+  private constructor(repositoryName: string) {
     this.repositoryName = repositoryName
   }
 
   /**
    * Get state for module
    */
-  state (): PageStateFunction<T, S> {
-    return () => {
+  public state(): PageStateFunction<T, S> {
+    return (): S => {
       return defaultPageState as S
     }
   }
@@ -58,8 +68,8 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
   /**
    * Get state for module
    */
-  stateWith<E extends PageState<T>> (customState: any): PageStateFunction<T, E> {
-    return () => {
+  public stateWith<E extends PageState<T>>(customState: any): PageStateFunction<T, E> {
+    return (): E => {
       return Object.assign(defaultPageState, customState) as E
     }
   }
@@ -67,7 +77,7 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
   /**
    * Get actions for module
    */
-  actions (): PageActionTree<T, S> {
+  public actions(): PageActionTree<T, S> {
     return this.buildActions(this.repositoryName)
   }
 
@@ -75,7 +85,7 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
    * Add custom actions
    * @param customActions custom actions to add.
    */
-  actionsWith (customActions: PageActionTree<T, S>): PageActionTree<T, S> {
+  public actionsWith(customActions: PageActionTree<T, S>): PageActionTree<T, S> {
     return Object.assign(this.actions(), customActions)
   }
 
@@ -83,21 +93,24 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
    * Build actions for module.
    * @param repoName
    */
-  private buildActions (repoName: string): PageActionTree<T, S> {
+  private buildActions(repoName: string): PageActionTree<T, S> {
     return {
-      create (context, createRequest: C) {
+      create(context, createRequest: C): VuexResult {
         return this.$repo.get<REPO>(repoName).create(createRequest)
       },
-      refresh ({ dispatch, state }) {
+      refresh({ dispatch, state }): VuexResult {
         return dispatch('showPage', {
           page: state.number,
           size: state.size
         })
       },
-      showPage ({ commit }, pageConfig: PageRequest = 1) {
-        return this.$repo.get<REPO>(repoName).showPage(pageConfig).then((response: Page<T>) => {
-          return commit('setPage', response)
-        })
+      showPage({ commit }, pageConfig: PageRequest = 1): VuexResult {
+        return this.$repo
+          .get<REPO>(repoName)
+          .showPage(pageConfig)
+          .then((response: Page<T>): VuexResult => {
+            return commit('setPage', response)
+          })
       }
     }
   }
@@ -105,9 +118,9 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
   /**
    * Build mutations for module
    */
-  mutations (): PageMutationTree<T, S> {
+  public mutations(): PageMutationTree<T, S> {
     return {
-      setPage (state, value: Page<T>) {
+      setPage(state, value: Page<T>): VuexResult {
         Object.assign(state, value)
       }
     }
@@ -117,20 +130,22 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
    * Build mutations with custom ones added.
    * @param customMutations custom mutations.
    */
-  mutationsWith (customMutations: PageMutationTree<T, S>): PageMutationTree<T, S> {
+  public mutationsWith(
+    customMutations: PageMutationTree<T, S>
+  ): PageMutationTree<T, S> {
     return Object.assign(this.mutations(), customMutations)
   }
 
   /**
    * Build getters for module
    */
-  getters (): PageGetterTree<T, S> {
+  public getters(): PageGetterTree<T, S> {
     return {
-      page (state): Page<T> {
+      page(state): Page<T> {
         return state
       },
 
-      content (state): T[] {
+      content(state): T[] {
         return state.content
       }
     }
@@ -140,7 +155,7 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
    * Use getters and add your own
    * @param customGetters
    */
-  gettersWith (customGetters: PageGetterTree<T, S>): PageGetterTree<T, S> {
+  public gettersWith(customGetters: PageGetterTree<T, S>): PageGetterTree<T, S> {
     return Object.assign(this.getters(), customGetters)
   }
 
@@ -148,7 +163,11 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
    * Build new module
    * @param repositoryName
    */
-  static build<T, REPO extends PageableRepository = PageableRepository, C = any> (repositoryName: string) {
+  public static build<
+    T,
+    REPO extends PageableRepository = PageableRepository,
+    C = any
+  >(repositoryName: string): PageModuleBuilder<T, PageState<T>, REPO, C> {
     return new PageModuleBuilder<T, PageState<T>, REPO, C>(repositoryName)
   }
 
@@ -156,7 +175,12 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
    * Build new module allowing for custom state, actions, mutations, getters
    * @param repositoryName
    */
-  static buildCustomizable<T, S extends PageState<T>, REPO extends PageableRepository = PageableRepository, C = any> (repositoryName: string) {
+  public static buildCustomizable<
+    T,
+    S extends PageState<T>,
+    REPO extends PageableRepository = PageableRepository,
+    C = any
+  >(repositoryName: string): PageModuleBuilder<T, S, REPO, C> {
     return new PageModuleBuilder<T, S, REPO, C>(repositoryName)
   }
 }

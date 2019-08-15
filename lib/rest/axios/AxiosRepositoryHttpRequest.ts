@@ -3,7 +3,9 @@ import AxiosRepositoryHttpResponse from './AxiosRepositoryHttpResponse'
 import RepositoryHttpRequest from '~/lib/rest/http/RepositoryHttpRequest'
 import { Axios } from '~/lib/types'
 
-export default class AxiosRepositoryHttpRequest<T> implements RepositoryHttpRequest<T, AxiosResponse, AxiosRepositoryHttpResponse<T>> {
+export default class AxiosRepositoryHttpRequest<T>
+  implements
+    RepositoryHttpRequest<T, AxiosResponse, AxiosRepositoryHttpResponse<T>> {
   private resource: string = ''
   private appendedUrl: string = ''
   private payload: any = undefined
@@ -11,11 +13,11 @@ export default class AxiosRepositoryHttpRequest<T> implements RepositoryHttpRequ
   private httpMethod: string = 'get'
   private axios!: Axios
 
-  constructor (axios: Axios) {
+  public constructor(axios: Axios) {
     this.axios = axios
   }
 
-  private buildAxiosRequest (): AxiosRequestConfig {
+  private buildAxiosRequest(): AxiosRequestConfig {
     const fullUrl = this.resource + this.appendedUrl
     return {
       method: this.httpMethod,
@@ -25,12 +27,12 @@ export default class AxiosRepositoryHttpRequest<T> implements RepositoryHttpRequ
     } as AxiosRequestConfig
   }
 
-  method (method: string): this {
+  public method(method: string): this {
     this.httpMethod = method
     return this
   }
 
-  appendUrl (append: string): this {
+  public appendUrl(append: string): this {
     if (!this.appendedUrl) {
       this.appendedUrl = ''
     }
@@ -41,30 +43,30 @@ export default class AxiosRepositoryHttpRequest<T> implements RepositoryHttpRequ
     return this
   }
 
-  execute (): Promise<AxiosRepositoryHttpResponse<T>> {
+  public execute(): Promise<AxiosRepositoryHttpResponse<T>> {
     const axiosRequest: AxiosRequestConfig = this.buildAxiosRequest()
     return this.axios.request(axiosRequest).then((response: AxiosResponse) => {
       return Promise.resolve(new AxiosRepositoryHttpResponse<T>(response))
     })
   }
 
-  fetch (): Promise<T> {
-    return this.execute().then((response) => {
+  public fetch(): Promise<T> {
+    return this.execute().then(response => {
       return Promise.resolve(response.get())
     })
   }
 
-  withBody (payload: any): this {
+  public withBody(payload: any): this {
     this.payload = payload
     return this
   }
 
-  withParams (params: any): this {
+  public withParams(params: any): this {
     this.params = params
     return this
   }
 
-  forResource (resource: string): this {
+  public forResource(resource: string): this {
     if (!resource.startsWith('/')) {
       resource = '/' + resource
     }
@@ -72,7 +74,13 @@ export default class AxiosRepositoryHttpRequest<T> implements RepositoryHttpRequ
     return this
   }
 
-  static init<E> (axios: Axios, resource: string, httpMethod: string = 'get'): AxiosRepositoryHttpRequest<E> {
-    return new AxiosRepositoryHttpRequest<E>(axios).forResource(resource).method(httpMethod)
+  public static init<E>(
+    axios: Axios,
+    resource: string,
+    httpMethod: string = 'get'
+  ): AxiosRepositoryHttpRequest<E> {
+    return new AxiosRepositoryHttpRequest<E>(axios)
+      .forResource(resource)
+      .method(httpMethod)
   }
 }
