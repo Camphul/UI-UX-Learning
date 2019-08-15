@@ -4,7 +4,6 @@
 import { PageActionTree, PageGetterTree, PageMutationTree, PageState, PageStateFunction } from './Types'
 import Page, { PageRequest } from '~/lib/rest/types/page'
 import PageableRepository from '~/lib/rest/base/PageableRepository'
-import Repository from '~/lib/rest/base/Repository'
 
 const defaultPageState: PageState<any> = {
   content: [],
@@ -39,7 +38,8 @@ const defaultPageState: PageState<any> = {
  * Type T = resource to be found inside page content
  * Type C = type which is used in create
  */
-export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>, C = any> {
+export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
+  REPO extends PageableRepository = PageableRepository, C = any> {
   private readonly repositoryName!: string
 
   private constructor (repositoryName: string) {
@@ -86,8 +86,7 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
   private buildActions (repoName: string): PageActionTree<T, S> {
     return {
       create (context, createRequest: C) {
-        // @ts-ignore
-        return this.$repo.get<Repository>(repoName).create(createRequest)
+        return this.$repo.get<REPO>(repoName).create(createRequest)
       },
       refresh ({ dispatch, state }) {
         return dispatch('showPage', {
@@ -96,8 +95,7 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
         })
       },
       showPage ({ commit }, pageConfig: PageRequest = 1) {
-        // @ts-ignore
-        return this.$repo.get<PageableRepository>(repoName).showPage(pageConfig).then((response: Page<T>) => {
+        return this.$repo.get<REPO>(repoName).showPage(pageConfig).then((response: Page<T>) => {
           return commit('setPage', response)
         })
       }
@@ -150,15 +148,15 @@ export default class PageModuleBuilder<T, S extends PageState<T> = PageState<T>,
    * Build new module
    * @param repositoryName
    */
-  static build<T, C = any> (repositoryName: string) {
-    return new PageModuleBuilder<T, PageState<T>, C>(repositoryName)
+  static build<T, REPO extends PageableRepository = PageableRepository, C = any> (repositoryName: string) {
+    return new PageModuleBuilder<T, PageState<T>, REPO, C>(repositoryName)
   }
 
   /**
    * Build new module allowing for custom state, actions, mutations, getters
    * @param repositoryName
    */
-  static buildCustomizable<T, S extends PageState<T>, C = any> (repositoryName: string) {
-    return new PageModuleBuilder<T, S, C>(repositoryName)
+  static buildCustomizable<T, S extends PageState<T>, REPO extends PageableRepository = PageableRepository, C = any> (repositoryName: string) {
+    return new PageModuleBuilder<T, S, REPO, C>(repositoryName)
   }
 }

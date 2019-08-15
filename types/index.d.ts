@@ -1,8 +1,9 @@
 import Vue, { ComponentOptions } from 'vue'
+import './vuex'
 import { CookieAttributes } from 'js-cookie'
 import { VueWaitInstance } from 'vue-wait'
-import User from '~/lib/rest/types/auth/CurrentUser'
-import RepositoryRegistry from '~/lib/rest/RepositoryRegistry'
+import User from '../lib/rest/types/auth/CurrentUser'
+import RepositoryRegistry from '../lib/rest/RepositoryRegistry'
 interface StorageCookieOptions extends CookieAttributes {
   cookie: {
     prefix: string;
@@ -51,11 +52,27 @@ declare module 'vue/types/options' {
   }
 }
 
+declare module '@nuxt/vue-app' {
+  interface Context {
+    $auth: Auth<User>
+    $wait: VueWaitInstance
+    $repo: RepositoryRegistry
+  }
+}
+
+declare module '@nuxt/vue-app' {
+  interface NuxtAppOptions {
+    $auth: Auth<User>
+    $wait: VueWaitInstance
+    $repo: RepositoryRegistry
+  }
+}
+
 declare module 'vue/types/vue' {
 
   interface Vue {
-    $auth: Auth<User>;
-    $wait: VueWaitInstance;
-    $repo: RepositoryRegistry;
+    $auth: Auth<User>
+    $wait: VueWaitInstance
+    $repo: RepositoryRegistry
   }
 }

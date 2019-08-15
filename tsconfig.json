@@ -31,9 +31,5 @@
       "@nuxtjs/axios",
       "@nuxtjs/auth"
     ]
-  },
-  "files": [
-    "index.d.ts",
-    "node_modules/axios/axios.d.ts"
-  ]
+  }
 }

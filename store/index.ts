@@ -1,9 +1,3 @@
-export const state = () => ({
-  version: '1.0'
+import { RootState } from '~/lib/store/Types'
+export const state: RootState = () => ({
 })
-
-export const getters = {
-  version (state) {
-    return state.version
-  }
-}

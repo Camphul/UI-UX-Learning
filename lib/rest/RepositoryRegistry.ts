@@ -1,18 +1,19 @@
 import Repository from '~/lib/rest/base/Repository'
 import { StringTMap } from '~/lib/types/Maps'
-export default class RepositoryRegistry {
+import Registry from '~/lib/Registry'
+export default class RepositoryRegistry implements Registry<Repository> {
   private map!: StringTMap<Repository>
 
   private constructor () {
     this.map = {}
   }
 
-  public get<S extends Repository> (key: string): S {
+  public get<T extends Repository> (key: string): T {
     const repo = this.map[key]
     if (!repo) {
       throw new Error('Repository not found.')
     }
-    return repo as S
+    return repo as T
   }
 
   public register (key: string, repository: Repository): void {
