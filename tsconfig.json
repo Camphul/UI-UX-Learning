@@ -31,5 +31,11 @@
       "@nuxtjs/axios",
       "@nuxtjs/auth"
     ]
-  }
+  },
+  "files": [
+    "vue.shim.d.ts"
+  ],
+  "include": [
+    "types/*.d.ts"
+  ]
 }
