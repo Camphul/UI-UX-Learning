@@ -54,7 +54,6 @@ export default class LoginPage extends Vue {
       await this.$auth.loginWith('local', {
         data: this.formData
       })
-      this.$router.push('/')
     } catch (e) {
       this.showError = true
     } finally {
