@@ -12,7 +12,7 @@ module.exports = {
     warnOnUnsupportedTypeScriptVersion: false
   },
   extends: [
-    '@nuxtjs/eslint-config-typescript',
+    '@nuxtjs',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/recommended',
     'prettier/@typescript-eslint',
@@ -27,7 +27,6 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    'import/no-mutable-exports': 'off',
     // https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/html-self-closing.md
     'vue/html-self-closing': ['error', {
       html: {
@@ -38,6 +37,7 @@ module.exports = {
       svg: 'always',
       math: 'always'
     }],
+    'vue/require-component-is': 'off',
     'max-len': ["error", { "code": 140 }]
   }
 }

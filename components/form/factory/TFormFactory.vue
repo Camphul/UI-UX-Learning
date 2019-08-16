@@ -1,5 +1,5 @@
 <template>
-  <v-form :id="id" ref="form" @submit.prevent="handleSubmitValidation">
+  <v-form ref="form" :id="id" @submit.prevent="handleSubmitValidation">
     <t-form-factory-input
       v-for="field in schema"
       :key="field.name"

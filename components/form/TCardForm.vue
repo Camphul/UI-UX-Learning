@@ -13,7 +13,7 @@
     </v-card-text>
     <v-card-actions>
       <slot name="submitButton">
-        <v-btn color="primary" type="submit" :form="id" :loading="isLoading">
+        <v-btn :form="id" :loading="isLoading" color="primary" type="submit">
           {{ submitButtonText }}
         </v-btn>
       </slot>

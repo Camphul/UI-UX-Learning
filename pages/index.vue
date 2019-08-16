@@ -12,7 +12,7 @@
         {{ customGetter }}
       </strong>
     </p>
-    <v-btn color="primary" @click="doPost">
+    <v-btn @click="doPost" color="primary">
       Create post
     </v-btn>
     <v-btn @click="doCustom">

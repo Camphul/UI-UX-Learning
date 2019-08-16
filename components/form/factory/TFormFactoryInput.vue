@@ -1,7 +1,7 @@
 <template>
   <component
-    :is="computedChildComponentType"
     ref="input"
+    :is="computedChildComponentType"
     v-bind="computedChildAttributes"
     v-on="$listeners"
   />

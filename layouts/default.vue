@@ -12,7 +12,7 @@
 <script>
 import { Vue, Component } from 'nuxt-property-decorator'
 import TNavigationDrawer from '~/components/bar/TNavigationDrawer'
-import TAppBar from '~/components/bar/TAppBar'
+import TAppBar from '~/components/bar/TAppBar.vue'
 @Component({
   components: {
     TNavigationDrawer,

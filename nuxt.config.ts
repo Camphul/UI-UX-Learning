@@ -1,3 +1,4 @@
+/* eslint-disable */
 import NuxtConfiguration from '@nuxt/config'
 const config: NuxtConfiguration = {
   mode: 'universal',
@@ -46,7 +47,10 @@ const config: NuxtConfiguration = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
+  ],
 
   wait: { useVuex: true },
 
@@ -95,7 +99,8 @@ const config: NuxtConfiguration = {
   /*
    ** Build configuration
    */
-  build: {}
+  build: { }
 }
 
 export default config
+/* eslint-enable */

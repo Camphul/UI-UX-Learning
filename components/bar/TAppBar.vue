@@ -15,7 +15,7 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Emit } from 'nuxt-property-decorator'
-import TAppBarAccountMenu from './TAppBarAccountMenu'
+import TAppBarAccountMenu from './TAppBarAccountMenu.vue'
 @Component({
   components: {
     TAppBarAccountMenu

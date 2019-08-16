@@ -2,13 +2,13 @@
   <div>
     <t-card-form
       id="register-form"
-      title="Create Account"
-      submit-button-text="Register"
       :schema="registerSchema"
       :model="formData"
       @submit="doRegister"
+      title="Create Account"
+      submit-button-text="Register"
     >
-      <template #actionButtons>
+      <template slot="actionButtons">
         <v-spacer />
         <v-btn text to="/login">
           Login
