@@ -8,15 +8,18 @@
       :schema="formSchema"
       :model="formData"
       @submit="handleSubmit"
-    />
-    <v-btn
-      :loading="isLoading"
-      form="blogpost-form-create"
-      color="primary"
-      type="submit"
     >
-      Create
-    </v-btn>
+      <template slot="footer">
+        <v-btn
+          :loading="isLoading"
+          form="blogpost-form-create"
+          color="primary"
+          type="submit"
+        >
+          Create
+        </v-btn>
+      </template>
+    </t-form-factory>
   </div>
 </template>
 <script lang="ts">

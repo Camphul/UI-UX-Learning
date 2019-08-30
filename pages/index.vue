@@ -8,10 +8,8 @@
     </p>
   </div>
 </template>
-
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import BlogService from '~/lib/blog/BlogService'
 
 @Component
 export default class IndexPage extends Vue {

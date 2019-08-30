@@ -7,6 +7,7 @@
       v-bind="field"
       :readonly="isLoading"
     />
+    <slot name="footer"></slot>
   </v-form>
 </template>
 <script lang="ts">
