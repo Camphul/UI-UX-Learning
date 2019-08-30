@@ -3,7 +3,7 @@
     <t-navigation-drawer ref="drawer" />
     <t-app-bar @toggleDrawer="toggleDrawer" />
     <v-content app>
-      <v-container grid-list-md text-center>
+      <v-container grid-list-md>
         <nuxt />
       </v-container>
     </v-content>

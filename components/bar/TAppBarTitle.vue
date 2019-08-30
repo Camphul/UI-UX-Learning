@@ -5,3 +5,9 @@
     </nuxt-link>
   </v-toolbar-title>
 </template>
+<style scoped lang="css">
+.toolbar-title {
+  color: black;
+  text-decoration: none;
+}
+</style>

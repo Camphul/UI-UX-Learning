@@ -5,6 +5,7 @@ const ComponentType = {
   text: 'v-text-field',
   password: 'v-text-field',
   email: 'v-text-field',
+  textarea: 'v-textarea',
   /**
    * Find the component type required.
    * @param value type name.

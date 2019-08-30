@@ -28,9 +28,3 @@ export default class TAppBar extends Vue {
   toggleDrawer() {}
 }
 </script>
-<style scoped lang="scss">
-.toolbar-title {
-  color: black;
-  text-decoration: none;
-}
-</style>
