@@ -16,12 +16,13 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { Toggleable } from '~/lib/types'
 
 @Component
-export default class TNavigationDrawer extends Vue {
-  open: boolean = false
+export default class TNavigationDrawer extends Vue implements Toggleable {
+  private open: boolean = false
 
-  toggle() {
+  public toggle(): void {
     this.open = !this.open
   }
 }

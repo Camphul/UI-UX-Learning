@@ -31,7 +31,7 @@ import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component
 export default class TAppBarAccountMenu extends Vue {
-  doLogout() {
+  private doLogout() {
     this.$auth.logout()
   }
 }
