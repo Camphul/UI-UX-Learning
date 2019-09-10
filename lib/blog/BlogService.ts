@@ -1,5 +1,5 @@
+import { Vue } from 'nuxt-property-decorator'
 import Service from '~/lib/service/Service'
-import { Vue } from '~/node_modules/nuxt-property-decorator'
 import BlogRepository from '~/lib/blog/BlogRepository'
 import { CreateBlogPostRequest } from '~/lib/blog/types'
 import { UUIDResponse } from '~/lib/rest/types'
