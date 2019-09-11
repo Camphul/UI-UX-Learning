@@ -20,16 +20,17 @@ export default class TNavigationDrawerItem extends Vue {
   @Prop({
     required: true
   })
-  readonly to: string = '/'
+  readonly to!: string
 
   @Prop({
     required: true
   })
-  readonly title: string = 'Untitled'
+  readonly title!: string
 
   @Prop({
-    required: false
+    required: false,
+    default: ''
   })
-  readonly icon: string = ''
+  readonly icon!: string
 }
 </script>
